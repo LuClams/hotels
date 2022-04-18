@@ -3,11 +3,21 @@
 namespace App\Entity;
 
 use App\Repository\RoomRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Entity\File;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Vich\UploaderBundle\VichUploaderBundle;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
+#[Uploadable]
 class Room
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -35,6 +45,45 @@ class Room
     #[ORM\ManyToOne(targetEntity: Supervisor::class, inversedBy: 'room')]
     private $supervisor;
 
+
+    #[Vich\UploadableField(mapping: 'room', fileNameProperty: 'image')]
+    private ?File $imageFile;
+
+
+    public function __construct()
+    {
+        $this->bookings = new ArrayCollection();
+    }
+
+
+    /**
+     * Permet d'obtenir un tables des jours qui ne sont pas disponible pour une annonce
+     *
+     * @return array Un tableau d'objet DateTime représentant les jours d'occupation
+     */
+    public function getNotAvailableDays(): array
+    {
+        $notAvailableDays = [];
+
+        foreach ($this->bookings as $booking) {
+            // calculer les jours qui se trouvent entre la date d'arrivé et de départ
+            $resultat = range(
+                $booking->getStartDate()->getTimestamp(),
+                $booking->getEndDate()->getTimestamp,
+                24 * 60 * 60
+            );
+
+            $days = array_map(function($dayTimestamp){
+                return new \DateTime(date('Y-m-d', $dayTimestamp));
+            }, $resultat);
+
+            $notAvailableDays = array_merge($notAvailableDays, $days);
+        }
+
+        return $notAvailableDays;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -57,11 +106,22 @@ class Room
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(string $image): self
     {
         $this->image = $image;
 
         return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile) :File
+    {
+        $this->imageFile = $imageFile;
+        return $imageFile;
     }
 
     public function getDescription(): ?string
@@ -76,31 +136,14 @@ class Room
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function getBooking(): ?Booking
-    {
-        return $this->booking;
-    }
-
-    public function setBooking(Booking $booking): self
-    {
-        // set the owning side of the relation if necessary
-        if ($booking->getRoom() !== $this) {
-            $booking->setRoom($this);
-        }
-
-        $this->booking = $booking;
 
         return $this;
     }
@@ -117,6 +160,41 @@ class Room
         return $this;
     }
 
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings[] = $booking;
+            $booking->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getRoom() === $this) {
+                $booking->setRoom(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString() {
+
+        return $this->title;
+    }
+
     public function getSupervisor(): ?Supervisor
     {
         return $this->supervisor;
@@ -129,8 +207,4 @@ class Room
         return $this;
     }
 
-    public function __toString(): string
-    {
-        return $this->title;
-    }
 }
