@@ -1,0 +1,32 @@
+{% extends 'headers/header_img.html.twig' %}
+
+{% block tag_title %} Nos hotels - Yadel {% endblock %}
+{% block title %} Yadel {% endblock %}
+
+{% block main %}
+    <main>
+        <div class=" m-3 justify-content-center justify-content-around ">
+            {% for yadelRoom in yadelRooms %}
+                <div class="card mb-3">
+                    <div class="row align-items-center g-0">
+                        <div class="col-md-4">
+                            <img src="{{ yadelRoom.image }}" class="img-fluid rounded-start" alt="{{ yadelRoom.title }}">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ yadelRoom.title }}</h5>
+                                <p class="card-text">{{ yadelRoom.content }}</p>
+                                <a href="{{ path('app_etablissement_yadel') }}">Voir plus</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center"><b>678 €</b></p>
+                            <a href="#" class="btn btn-primary">Réserver cette suite</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </main>
+{% endblock %}

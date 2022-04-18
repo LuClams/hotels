@@ -1,0 +1,35 @@
+{% extends 'headers/header_img.html.twig' %}
+
+{% block tag_title %} Nos hotels - Westeen {% endblock %}
+{% block title %} Westeen {% endblock %}
+
+{% block main %}
+    <main>
+        <div class=" m-3 justify-content-center justify-content-around ">
+            {% for westeenRoom in westeenRooms %}
+                <div class="card mb-3">
+                    <div class="row align-items-center g-0">
+                        <div class="col-md-4">
+                            <img src="{{ westeenRoom.image }}" class="img-fluid rounded-start" alt="{{ westeenRoom.title }}">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ westeenRoom.title }}</h5>
+                                <p class="card-text">{{ westeenRoom.content }}</p>
+                                <a href="{{ path('app_hotel_westeen') }}">Voir plus</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center"><b>678 €</b></p>
+                            <a href="#" class="btn btn-primary">Réserver cette suite</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </main>
+{% endblock %}
+
+
+
