@@ -48,13 +48,13 @@
 {% block main %}
     <main>
         <div class="row m-3 justify-content-center justify-content-around">
-            {% for hotel in hotels %}
+            {% for hostel in hostels %}
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ hotel.image }}" class="card-img-top" alt="{{ hotel.title }}">
+                    {#<img src="{{ hostel.name }}" class="card-img-top" alt="{{ hostel.name }}">#}
                     <div class="card-body">
-                        <h5 class="card-title">{{ hotel.title }}</h5>
-                        <p class="card-text">{{ hotel.content }}</p>
-                        <a href="#" class="btn btn-primary">Accéder à la page web de cet établissement ></a>
+                        <h5 class="card-title">{{ hostel.name }}</h5>
+                        <p class="card-text">{{ hostel.description }}</p>
+                        <a href="{{path('app_nos-hotels_{?name}')}}" class="btn btn-primary">Accéder à la page web de cet établissement ></a>
                     </div>
                 </div>
 
