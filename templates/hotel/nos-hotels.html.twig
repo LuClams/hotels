@@ -54,7 +54,22 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ hostel.name }}</h5>
                         <p class="card-text">{{ hostel.description }}</p>
-                        <a href="{{path('app_nos-hotels_{?name}')}}" class="btn btn-primary">Accéder à la page web de cet établissement ></a>
+                        {% if hostel.name is same as (Westeen) %}
+                            <a href="{{ path('app_hotel_westeen')}}" class="btn btn-primary">Accéder à la page web de cet établissement ></a>
+                                {%elseif hostel.name is same as (Hyatt)%}
+                                    <a href="{{ path('app_hotel_hyatt')}}" class="btn btn-primary">Accéder à la page web de cet établissement ></a>
+                                        {%elseif hostel.name is same as (Cap)%}
+                                            <a href="{{ path('app_hotel_cap')}}" class="btn btn-primary">Accéder à la page web de cet établissement ></a>
+                                            {%elseif hostel.name is same as (Ibis)%}
+                                                <a href="{{ path('app_hotel_ibis')}}" class="btn btn-primary">Accéder à la page web de cet établissement ></a>
+                                                {%elseif hostel.name is same as (HotelV)%}
+                                                    <a href="{{ path('app_hotel_hotel-v')}}" class="btn btn-primary">Accéder à la page web de cet établissement ></a>
+                                                    {%elseif hostel.name is same as (Jazzy)%}
+                                                        <a href="{{ path('app_hotel_jazzy')}}" class="btn btn-primary">Accéder à la page web de cet établissement ></a>
+                                                        {%elseif hostel.name is same as (Yadel)%}
+                                                            <a href="{{ path('app_hotel_yadel')}}" class="btn btn-primary">Accéder à la page web de cet établissement ></a>
+
+                            {%endif%}
                     </div>
                 </div>
 

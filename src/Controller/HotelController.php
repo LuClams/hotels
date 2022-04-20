@@ -20,9 +20,23 @@ class HotelController extends AbstractController
          // Retourne un tableau avec tous les hotels en base de données
          $hostels = $hostelRepository->findAll();
 
+         $westeen ='Westeen';
+         $hyatt ='Hyatt';
+         $cap ='Cap';
+         $ibis ='Ibis';
+         $hotelv ='Hotel V';
+         $jazzy ='Jazzy';
+         $yadel ='Yadel';
          return $this->render('hotel/nos-hotels.html.twig', [
              'controller_name' => 'HotelController',
-             'hostels' => $hostels
+             'hostels' => $hostels,
+             'Westeen' => $westeen,
+             'Hyatt' => $hyatt,
+             'Cap' => $cap,
+             'Ibis' => $ibis,
+             'HotelV' => $hotelv,
+             'Jazzy' => $jazzy,
+             'Yadel' => $yadel
          ]);
      }
 
@@ -37,10 +51,11 @@ class HotelController extends AbstractController
   //      return new Response('Utilisateur '.$user->getUsername().' récupéré depuis la base de données grâce au ParamConverter');
   //  }
   //
-     #[Route('/find-hostel/{?name}', name: 'app_nos-hotels_{?name}')]
+     #[Route('/hotel/{?name}', name: 'app_nos-hotels_{?name}')]
      public function findHostelWithParamConverter(Hostel $hostel): Response
      {
-         $hostel = $hostel->getName();
+         //$hostel =
+             dd($hostel->getName());
 
          // dump($hostelRepository->findAll());
          //
@@ -59,24 +74,27 @@ class HotelController extends AbstractController
          //dump($room->getTitle());
          //return new Response('<body></body>')
 
-         return $this->render('hotel/index.html.twig', [
-               'controller_name' => 'HotelController',
-               'hostel' => $hostel
-           ]);
+       // return $this->render('hotel/index.html.twig', [
+       //       'controller_name' => 'HotelController',
+       //       'hostel' => $hostel
+       //   ]);
      }
 
 
 
     #[Route('/hotel-hyatt', name: 'app_hotel_hyatt')]
-    public function findRoom(RoomRepository $roomRepository): Response
+    public function findRoomHyatt(RoomRepository $roomRepository): Response
     {
         // Retourne un tableau avec tous les hotels en base de données
-        $rooms = $roomRepository->findAll();
+
+        $hyattRooms =($roomRepository->findBy([
+                     'hostel' => '2'
+                 ]));
         $img = "https://cdn.pixabay.com/photo/2014/05/18/19/15/walkway-347319__480.jpg";
 
         return $this->render('hotel/hyatt.html.twig', [
             'controller_name' => 'HotelController',
-            'rooms' => $rooms,
+            'rooms' => $hyattRooms,
             'img' => $img
         ]);
     }
@@ -99,238 +117,97 @@ class HotelController extends AbstractController
     }
 
 
-  //  #[Route('/hotel-hyatt/{id?}', name: 'app_hotel_hyatt', requirements: ['id' => '/d+'])]
-  //  public function hyatt(?int $id): Response
-  //  {
-  //      $hyattRooms = [
-  //          1 => [
-  //              "title" => "Ragnar",
-  //              "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  //                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //              "image" => "https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406__480.jpg"
-  //          ],
-  //          2 => [
-  //              "title" => "Lilo",
-  //              "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  //                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //              "image" => "https://cdn.pixabay.com/photo/2021/08/27/01/33/bedroom-6577523__340.jpg"
-  //          ],
-  //          3 => [
-  //              "title" => "Grand Tsibili",
-  //              "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  //                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //              "image" => "https://cdn.pixabay.com/photo/2019/08/19/13/58/bed-4416515__340.jpg"
-  //          ],
-  //
-  //      ];
-  //
-  //      $img = "https://cdn.pixabay.com/photo/2014/05/18/19/15/walkway-347319__480.jpg";
-  //      return $this->render('hotel/hyatt.html.twig', [
-  //          'controller_name' => 'HotelController',
-  //          'img' => $img,
-  //          'hyattRooms' => $hyattRooms
-  //      ]);
-  //  }
-
-
-    #[Route('/hotel-westeen/{id?}', name: 'app_hotel_westeen', requirements: ['id' => '/d+'])]
-    public function westeen(?int $id): Response
+   // #[Route('/hotel-westeen', name: 'app_hotel_westeen', requirements: ['id' => '/d+'])]
+    #[Route('/hotel-westeen', name: 'app_hotel_westeen')]
+    public function findRoomWesteen(RoomRepository $roomRepository): Response
     {
-        $westeenRooms = [
-            1 => [
-                "title" => "Azur",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406__480.jpg"
-            ],
-            2 => [
-                "title" => "Cote",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2021/08/27/01/33/bedroom-6577523__340.jpg"
-            ],
-            3 => [
-                "title" => "Tezami",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2019/08/19/13/58/bed-4416515__340.jpg"
-            ],
-            4 => [
-                "title" => "Lux",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2019/08/19/13/58/bed-4416515__340.jpg"
-            ],
 
-        ];
-
+        $westeenRooms =($roomRepository->findBy([
+            'hostel' => '1'
+        ]));
         $img = "https://cdn.pixabay.com/photo/2014/07/10/17/17/hotel-389256__480.jpg";
         return $this->render('hotel/westeen.html.twig', [
             'controller_name' => 'HotelController',
             'img' => $img,
-            'westeenRooms' => $westeenRooms
+            'rooms' => $westeenRooms
         ]);
     }
 
-    #[Route('/hotel-cap/{id?}', name: 'app_hotel_cap', requirements: ['id' => '/d+'])]
-    public function cap(?int $id): Response
+    #[Route('/hotel-cap/', name: 'app_hotel_cap')]
+    public function findRoomCap(RoomRepository $roomRepository): Response
     {
-        $capRooms = [
-            1 => [
-                "title" => "Ragnar",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406__480.jpg"
-            ],
-            2 => [
-                "title" => "Lilo",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2021/08/27/01/33/bedroom-6577523__340.jpg"
-            ],
-            3 => [
-                "title" => "Grand Tsibili",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2019/08/19/13/58/bed-4416515__340.jpg"
-            ],
-
-        ];
+        $capRooms = $roomRepository->findBy([
+            'hostel' => '3'
+        ]);
 
         $img = "https://cdn.pixabay.com/photo/2015/09/21/09/53/villa-cortine-palace-949547__480.jpg";
         return $this->render('hotel/cap.html.twig', [
             'controller_name' => 'HotelController',
             'img' => $img,
-            'capRooms' => $capRooms
+            'rooms' => $capRooms
         ]);
     }
 
-    #[Route('/hotel-ibis/{id?}', name: 'app_hotel_ibis', requirements: ['id' => '/d+'])]
-    public function ibis(?int $id): Response
+    #[Route('/hotel-ibis/', name: 'app_hotel_ibis', requirements: ['id' => '/d+'])]
+    public function findRoomIbis(RoomRepository $roomRepository): Response
     {
-        $ibisRooms = [
-            1 => [
-                "title" => "Ragnar",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406__480.jpg"
-            ],
-            2 => [
-                "title" => "Lilo",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2021/08/27/01/33/bedroom-6577523__340.jpg"
-            ],
-
-        ];
+        $ibisRooms = $roomRepository->findBy([
+            'hostel' => '4'
+        ]);
 
         $img = "https://cdn.pixabay.com/photo/2014/05/30/18/30/vancouver-358515__480.jpg";
         return $this->render('hotel/ibis.html.twig', [
             'controller_name' => 'HotelController',
             'img' => $img,
-            'ibisRooms' => $ibisRooms
+            'rooms' => $ibisRooms
         ]);
     }
 
 
-    #[Route('/hotel-hotel-v/{id?}', name: 'app_hotel_hotel-v', requirements: ['id' => '/d+'])]
-    public function hotelv(?int $id): Response
+    #[Route('/hotel-hotel-v/', name: 'app_hotel_hotel-v')]
+    public function findRoomHotelv(RoomRepository $roomRepository): Response
     {
-        $hotelvRooms = [
-            1 => [
-                "title" => "Ragnar",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406__480.jpg"
-            ],
-            2 => [
-                "title" => "Lilo",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2021/08/27/01/33/bedroom-6577523__340.jpg"
-            ],
-            3 => [
-                "title" => "Grand Tsibili",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2019/08/19/13/58/bed-4416515__340.jpg"
-            ],
-            4 => [
-                "title" => "Grand Tsibili",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2019/08/19/13/58/bed-4416515__340.jpg"
-            ],
-
-        ];
+        $hotelvRooms = $roomRepository->findBy([
+            'hostel' => '5'
+        ]);
 
         $img = "https://cdn.pixabay.com/photo/2015/09/21/09/54/villa-cortine-palace-949552__480.jpg";
         return $this->render('hotel/hotel-v.html.twig', [
             'controller_name' => 'HotelController',
             'img' => $img,
-            'hotelvRooms' => $hotelvRooms
+            'rooms' => $hotelvRooms
         ]);
     }
 
 
-    #[Route('/hotel-jazzy/{id?}', name: 'app_hotel_jazzy', requirements: ['id' => '/d+'])]
-    public function jazzy(?int $id): Response
+    #[Route('/hotel-jazzy/', name: 'app_hotel_jazzy')]
+    public function findRoomJazzy(RoomRepository $roomRepository): Response
     {
-        $jazzyRooms = [
-            1 => [
-                "title" => "Ragnar",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406__480.jpg"
-            ],
-            2 => [
-                "title" => "Lilo",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2021/08/27/01/33/bedroom-6577523__340.jpg"
-            ],
-            3 => [
-                "title" => "Grand Tsibili",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2019/08/19/13/58/bed-4416515__340.jpg"
-            ],
-
-        ];
+        $jazzyRooms = $roomRepository->findBy([
+            'hostel' => '6'
+        ]);
 
         $img = "https://cdn.pixabay.com/photo/2018/10/01/00/51/luxury-hotel-3715115__480.jpg";
         return $this->render('hotel/jazzy.html.twig', [
             'controller_name' => 'HotelController',
             'img' => $img,
-            'jazzyRooms' => $jazzyRooms
+            'rooms' => $jazzyRooms
         ]);
 
     }
 
-    #[Route('/hotel-yadel/{id?}', name: 'app_hotel_yadel', requirements: ['id' => '/d+'])]
-    public function yadel(?int $id): Response
+    #[Route('/hotel-yadel/', name: 'app_hotel_yadel')]
+    public function findRoomYadel(RoomRepository $roomRepository): Response
     {
-        $yadelRooms = [
-            1 => [
-                "title" => "Ragnar",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406__480.jpg"
-            ],
-            2 => [
-                "title" => "Lilo",
-                "content" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "image" => "https://cdn.pixabay.com/photo/2021/08/27/01/33/bedroom-6577523__340.jpg"
-            ],
-
-        ];
+        $yadelRooms = $roomRepository->findBy([
+            'hostel' => '7'
+        ]);
 
         $img = "https://cdn.pixabay.com/photo/2014/09/26/04/59/holiday-complex-461633__480.jpg";
         return $this->render('hotel/yadel.html.twig', [
             'controller_name' => 'HotelController',
             'img' => $img,
-            'yadelRooms' => $yadelRooms
+            'rooms' => $yadelRooms
         ]);
     }
 }

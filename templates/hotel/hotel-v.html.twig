@@ -14,16 +14,16 @@
 
     <main>
         <div class=" m-3 justify-content-center justify-content-around ">
-            {% for hotelvRoom in hotelvRooms %}
+            {% for room in rooms %}
                 <div class="card mb-3">
                     <div class="row align-items-center g-0">
                         <div class="col-md-4">
-                            <img src="{{ hotelvRoom.image }}" class="img-fluid rounded-start" alt="{{ hotelvRoom.title }}">
+                            <img src="{{ vich_uploader_asset(room, 'imageFile') }}" class="img-fluid rounded-start" alt="{{ room.title }}">
                         </div>
                         <div class="col-md-6">
                             <div class="card-body">
-                                <h5 class="card-title">{{ hotelvRoom.title }}</h5>
-                                <p class="card-text">{{ hotelvRoom.content }}</p>
+                                <h5 class="card-title">{{ room.title }}</h5>
+                                <p class="card-text">{{ room.description }}</p>
                                 <a href="{{ path('app_hotel_hotel-v') }}">Voir plus</a>
                             </div>
                         </div>

@@ -6,6 +6,8 @@ use App\Repository\RoomRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Entity\File;
 use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
@@ -15,6 +17,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 #[Uploadable]
+/**
+ * @Vich\Uploadable
+ */
 class Room
 {
 
@@ -45,9 +50,13 @@ class Room
     #[ORM\ManyToOne(targetEntity: Supervisor::class, inversedBy: 'room')]
     private $supervisor;
 
-
+    /**
+     * @var File
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "image/jpg", "image/webb" })
+     * @Vich\UploadableField(mapping="room", fileNameProperty="image")
+     */
     #[Vich\UploadableField(mapping: 'room', fileNameProperty: 'image')]
-    private ?File $imageFile;
+    private File $imageFile;
 
 
     public function __construct()
@@ -113,11 +122,22 @@ class Room
         return $this;
     }
 
+    /**
+     * Get imageFile
+     *
+     * @return File|UploadedFile
+     */
     public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
+    /**
+     * Set imageFile
+     *
+     * @param File|UploadedFile $imageFile
+     *
+     */
     public function setImageFile(?File $imageFile) :File
     {
         $this->imageFile = $imageFile;
