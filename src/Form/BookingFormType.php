@@ -16,6 +16,7 @@ class BookingFormType extends AbstractType
             ->add('endDate')
             ->add('amount')
             ->add('booker')
+            ->add('room')
         ;
     }
 

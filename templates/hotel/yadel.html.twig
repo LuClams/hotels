@@ -1,9 +1,17 @@
-{% extends 'headers/header_img.html.twig' %}
+{% extends 'headers/header.html.twig' %}
 
 {% block tag_title %} Nos hotels - Yadel {% endblock %}
 {% block title %} Yadel {% endblock %}
 
 {% block main %}
+    <div class="card bg-dark text-white border-0">
+        <img src="{{ img }}" class="card-img" alt="...">
+        <div class="card-img-overlay text-center">
+            <h1>Yadel </h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        </div>
+    </div>
+
     <main>
         <div class=" m-3 justify-content-center justify-content-around ">
             {% for yadelRoom in yadelRooms %}

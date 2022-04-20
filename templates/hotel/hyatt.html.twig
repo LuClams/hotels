@@ -8,7 +8,7 @@
     </head>#}
 {#  {% extends 'base.html.twig' %}#}
 
-{% extends 'headers/header_img.html.twig' %}
+{% extends 'headers/header.html.twig' %}
 {% block tag_title %} Nos hotels - HYATT {% endblock %}
 {% block title %} HYATT {% endblock %}
     {#<body>
@@ -103,18 +103,26 @@
             </div>
         </header>#}
 {% block main %}
+        <div class="card bg-dark text-white border-0">
+            <img src="{{ img }}" class="card-img" alt="...">
+            <div class="card-img-overlay text-center">
+                <h1>Hyatt </h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+        </div>
+
         <main>
             <div class=" m-3 justify-content-center justify-content-around ">
-                {% for hyattRoom in hyattRooms %}
+                {% for room in rooms %}
                     <div class="card mb-3">
                         <div class="row align-items-center g-0">
                             <div class="col-md-4">
-                                <img src="{{ hyattRoom.image }}" class="img-fluid rounded-start" alt="{{ hyattRoom.title }}">
+                                <img src="{{ room.image }}" class="img-fluid rounded-start" alt="{{ room.title }}">
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ hyattRoom.title }}</h5>
-                                    <p class="card-text">{{ hyattRoom.content }}</p>
+                                    <h5 class="card-title">{{ room.title }}</h5>
+                                    <p class="card-text">{{ room.description }}</p>
                                     <a href="{{ path('app_hotel_hyatt') }}">Voir plus</a>
                                 </div>
                             </div>
