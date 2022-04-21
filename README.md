@@ -1,2 +1,0 @@
-# hotels
-dashboard ok
