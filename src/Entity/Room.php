@@ -133,10 +133,10 @@ class Room
     /**
      * Set imageFile
      *
-     * @param File|null $imageFile
-     *
+     * @param File $imageFile
+     * @return File
      */
-    public function setImageFile(?File $imageFile=null): File
+    public function setImageFile(File $imageFile): File
     {
         $this->imageFile = $imageFile;
 
