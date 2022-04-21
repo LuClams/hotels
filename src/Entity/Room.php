@@ -10,8 +10,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Entity\File;
 use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
-use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
-use Vich\UploaderBundle\VichUploaderBundle;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
@@ -135,12 +133,13 @@ class Room
     /**
      * Set imageFile
      *
-     * @param File|UploadedFile $imageFile
+     * @param File|null $imageFile
      *
      */
-    public function setImageFile(?File $imageFile) :File
+    public function setImageFile(?File $imageFile=null): File
     {
         $this->imageFile = $imageFile;
+
         return $imageFile;
     }
 
