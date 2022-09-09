@@ -1,7 +1,7 @@
 
 # Groupe-Hôtelier
 
-Ce projet consiste à créer le site web du groupe hôtelier onstitué de 7 établissements. Ce groupe souhaite un posséder un site web avec une page pour chacun de ses établissements. 
+Ce projet consiste à créer le site web du groupe hôtelier constitué de 7 établissements. Ce groupe souhaite un posséder un site web avec une page pour chacun de ses établissements. 
 Il donnera la possibilité à ses clients de réserver une Suite directement depuis le site web.
 
 ## Récupération du Projet
