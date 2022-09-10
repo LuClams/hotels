@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\DomCrawler\Field\FileFormField;
@@ -34,8 +35,8 @@ class RoomCrudController extends AbstractCrudController
                 ->setUploadDir('public/images/room/')
                 ->setUploadedFileNamePattern('[slug].[extension]')
                 ->setRequired(false),
-            TextEditorField::new('description'),
-            MoneyField::new('price') ->setCurrency('EUR'),
+            TextareaField::new('description')->stripTags(),
+            MoneyField::new('price') ->setCurrency('EUR')->setNumDecimals(0),
             //AssociationField::new('booking'),
             AssociationField::new('hostel'),
             AssociationField::new('supervisor')

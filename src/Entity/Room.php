@@ -50,11 +50,11 @@ class Room
 
     /**
      * @var File
-     * @Assert\File(mimeTypes={ "image/png", "image/jpeg", "image/jpg", "image/webb" })
+
      * @Vich\UploadableField(mapping="room", fileNameProperty="image")
      */
     #[Vich\UploadableField(mapping: 'room', fileNameProperty: 'image')]
-    private File $imageFile;
+    private $imageFile;
 
 
     public function __construct()
@@ -108,6 +108,18 @@ class Room
         return $this;
     }
 
+    public function setImageFile(File $image=null)
+    {
+        $this->imageFile = $image;
+
+    }
+
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
     public function getImage(): ?string
     {
         return $this->image;
@@ -120,28 +132,9 @@ class Room
         return $this;
     }
 
-    /**
-     * Get imageFile
-     *
-     * @return File|UploadedFile
-     */
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
 
-    /**
-     * Set imageFile
-     *
-     * @param File|UploadedFile $imageFile
-     *
-     */
-    public function setImageFile(?File $imageFile): File
-    {
-        $this->imageFile = $imageFile;
 
-        return $imageFile;
-    }
+
 
     public function getDescription(): ?string
     {

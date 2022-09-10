@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Hostel;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -24,7 +25,7 @@ class HostelCrudController extends AbstractCrudController
             TextField::new('city'),
             TextField::new('address'),
             AssociationField::new('supervisor'),
-            TextEditorField::new('description'),
+            TextareaField::new('description')->stripTags(),
             AssociationField::new('room')
         ];
     }
