@@ -1,3 +1,34 @@
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+    .navbar {
+        flex-direction: column;
+    }
+    nav > div > a > svg {
+        width:80px;
+        height:106px;
+    }
+    #footerp {
+        display: none;
+    }
+    #myInput {
+        min-width: 50%;
+    }
+}
+
+/* On screens that are 992px wide or less, the background color is blue */
+@media screen and (max-width: 992px) {
+    header {
+        color: white;
+    }
+    .navbar a {
+        text-align: center;
+    }
+    .dropdown-menu {
+        background-color: whitesmoke;
+    }
+
+}
+
 main {
     background-color: whitesmoke;
     padding: 14px 20px;
@@ -40,21 +71,6 @@ footer {
 footer > ul {
     font-size: 2.5rem;
 }
-/* On screens that are 992px wide or less, the background color is blue */
-@media screen and (max-width: 992px) {
-    header {
-        color: white;
-    }
-}
 
 
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 700px) {
-    .navbar {
-        flex-direction: column;
-    }
-    nav > div > a > svg {
-        width:80px;
-        height:106px;
-    }
-}
+
