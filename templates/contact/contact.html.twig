@@ -3,19 +3,21 @@
 {% block title %}Contactez-nous | {{ parent() }}{% endblock %}
 
 {% block main %}
-    <h1 class="h3 mb-3 font-weight-normal">Contactez-nous</h1>
+   <main>
+       <h1 class="h3 mb-3 font-weight-normal">Contactez-nous</h1>
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success" role="alert">
-            {{ message }}
-        </div>
-    {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-    {{ form_start(form) }}
-    {{ form_row(form.name,{ 'label': 'Votre nom' }) }}
-    {{ form_row(form.email, { 'label': 'Votre email' }) }}
-    {{ form_row(form.object, { 'label': 'Objet du message' }) }}
-    {{ form_row(form.message, { 'label': 'Votre message', 'attr': { 'rows': 10 } }) }}
-    <button class="btn btn-primary" type="submit">Envoyer</button>
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+        {{ form_row(form.name,{ 'label': 'Votre nom' }) }}
+        {{ form_row(form.email, { 'label': 'Votre email' }) }}
+        {{ form_row(form.object, { 'label': 'Objet du message' }) }}
+        {{ form_row(form.message, { 'label': 'Votre message', 'attr': { 'rows': 10 } }) }}
+        <button class="btn btn-primary" type="submit">Envoyer</button>
+        {{ form_end(form) }}
+   </main>
 {% endblock %}

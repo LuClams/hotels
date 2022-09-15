@@ -1,31 +1,55 @@
+
 main {
-    background-color: tan;
+    background-color: whitesmoke;
+    padding: 14px 20px;
+}
+
+/* Style the top navigation bar */
+.navbar {
+    display: flex;
+    background-color: black;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+    color: whitesmoke;
+    padding: 14px 20px;
+    text-decoration: none;
+
+}
+
+/* Change color on hover */
+.navbar a:hover {
+    background-color: #696969;
     color: black;
 }
+
+a.dropdown-item {
+    color:  black;
+}
+/* Fake image, just for this example */
+img {
+    width: 100%;
+    padding: 1px;
+}
+
+/* Footer */
 footer {
+    padding: 20px;
 
 }
+
 /* On screens that are 992px wide or less, the background color is blue */
 @media screen and (max-width: 992px) {
-    img {
-        max-width: 100vh;
-        background-color: blue;
+    header {
         color: white;
     }
 }
 
-/* On screens that are 600px wide or less, the background color is olive */
-@media screen and (max-width: 600px) {
-    main {
-        width: auto;
-        background-color: olive;
-        color: white;
-    }
-}
 
-@media screen and (max-width: 320px) {
-    a {
-        font-size:5em;
-        background-color: olive;
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+    .navbar {
+        flex-direction: column;
     }
 }
