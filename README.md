@@ -54,6 +54,8 @@ Sans oublier de créer votre virtualHost comme ci-dessous par exemple:
 ```
 Accès via http://hotels.localhost/home
 
+Utiliser le dossier Script SQL pour créer la BDD.
+
 S'enregistrer en tant q'admin puis accéder au back office:
 ```
 email: cgianelli@hostel.com
