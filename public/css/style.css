@@ -1,4 +1,4 @@
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+/* Responsive layout - when the screen is less than 700px*/
 @media screen and (max-width: 700px) {
     .navbar {
         flex-direction: column;
@@ -15,32 +15,28 @@
     }
 }
 
-/* On screens that are 992px wide or less, the background color is blue */
+/* On screens that are 992px wide or less */
 @media screen and (max-width: 992px) {
-    header {
-        color: white;
-    }
+
     .navbar a {
         text-align: center;
     }
     .dropdown-menu {
         background-color: whitesmoke;
     }
-
 }
+
 
 main {
     background-color: whitesmoke;
     padding: 14px 20px;
 }
 
-/* Style the top navigation bar */
 .navbar {
     display: flex;
     background-color: black;
 }
 
-/* Style the navigation bar links */
 .navbar a {
     color: whitesmoke;
     padding: 14px 20px;
@@ -48,22 +44,19 @@ main {
 
 }
 
-/* Change color on hover */
 .navbar a:hover {
-    background-color: #696969;
+    background-color: #d0d0d0;
     color: black;
 }
 
 a.dropdown-item {
     color:  black;
 }
-/* Fake image, just for this example */
 img {
     width: 100%;
-    padding: 1px;
+
 }
 
-/* Footer */
 footer {
     padding: 20px;
 }
