@@ -1,0 +1,321 @@
+{% extends 'headers/header.html.twig' %}
+
+{% block title %}Booking{% endblock %}
+
+{% block main %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1>Booking</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.startDate) }}
+    {{ form_row(form.endDate) }}
+    {{ form_row(form.amount) }}
+    {{ form_row(form.booker) }}
+    {{ form_row(form.room) }}
+
+    <button type="submit" class="btn">Valider</button>
+    {{ form_end(form) }}
+
+    <section class="home" id="home">
+        <div class="container">
+            <h1>Make Memories</h1>
+            <p>Discover the place where you have fun & enjoy a lot</p>
+
+            <div class="content grid">
+                <div class="box">
+                    <span>ARRIVAL DATE </span> <br>
+                    <input type="date" placeholder="29/20/2021">
+                </div>
+                <div class="box">
+                    <span>DEPARTURE DATE </span> <br>
+                    <input type="date" placeholder="29/20/2021">
+                </div>
+                <div class="box">
+                    <span>ADULTS</span> <br>
+                    <input type="number" placeholder="01">
+                </div>
+                <div class="box">
+                    <span>CHILDREN </span> <br>
+                    <input type="number" placeholder="01">
+                </div>
+                <div class="box">
+                    <button class="flex1">
+                        <span>Check Availability</span>
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .home {
+        background-image: url("../image/home.png");
+        height: 100vh;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: center;
+        }
+
+        .home h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 150px;
+        color: white;
+        padding-top: 10%;
+        }
+
+        .home p {
+        color: white;
+        }
+
+        .home .content {
+        text-align: left;
+        color: black;
+        margin-top: 7%;
+        }
+
+        .home .box {
+        background: white;
+        padding: 35px;
+        }
+
+        .home input {
+        margin-top: 10px;
+        }
+    </style>
+{% endblock %}
+
+<label>
+    <input id="mobi-picker" mbsc-input />
+</label>
+JS
+mobiscroll.datepicker('#mobi-picker', {
+controls: ['calendar'],
+touchUi: false
+});
+
+
+_________________
+
+mobiscroll.setOptions({
+locale: mobiscroll.localeFr,
+theme: 'ios',
+themeVariant: 'light'
+});
+
+var formatDate = mobiscroll.util.datetime.formatDate;
+var now = new Date();
+var endDate;
+var monthColors = [{
+background: '#b2f1c080',
+start: '2022-01-01T00:00',
+end: '2022-01-31T00:00',
+cellCssClass: 'md-book-rental-bg-off',
+recurring: {
+repeat: 'yearly',
+month: 1,
+day: 1
+}
+}, {
+background: '#b2f1c080',
+start: '2022-02-01T00:00',
+end: '2022-02-28T00:00',
+cellCssClass: 'md-book-rental-bg-off',
+recurring: {
+repeat: 'yearly',
+month: 2,
+day: 1
+}
+}, {
+background: '#b2f1c080',
+cellCssClass: 'md-book-rental-bg-off',
+recurring: {
+repeat: 'yearly',
+month: 2,
+day: 29
+}
+}, {
+background: '#a3cdff80',
+start: '2022-03-01T00:00',
+end: '2022-03-31T23:59',
+cellCssClass: 'md-book-rental-bg-pre',
+recurring: {
+repeat: 'yearly',
+month: 3,
+day: 1
+}
+}, {
+background: '#a3cdff80',
+start: '2022-04-01T00:00',
+end: '2022-04-30T00:00',
+cellCssClass: 'md-book-rental-bg-pre',
+recurring: {
+repeat: 'yearly',
+month: 4,
+day: 1
+}
+},
+{
+background: '#a3cdff80',
+start: '2022-05-01T00:00',
+end: '2022-05-31T00:00',
+cellCssClass: 'md-book-rental-bg-pre',
+recurring: {
+repeat: 'yearly',
+month: 5,
+day: 1
+}
+}, {
+background: '#f7f7bb80',
+start: '2022-06-01T00:00',
+end: '2022-06-30T00:00',
+cellCssClass: 'md-book-rental-bg-in',
+recurring: {
+repeat: 'yearly',
+month: 6,
+day: 1
+}
+},
+{
+background: '#f7f7bb80',
+start: '2022-07-01T00:00',
+end: '2022-07-31T00:00',
+cellCssClass: 'md-book-rental-bg-in',
+recurring: {
+repeat: 'yearly',
+month: 7,
+day: 1
+}
+}, {
+background: '#f7f7bb80',
+start: '2022-08-01T00:00',
+end: '2022-08-31T00:00',
+cellCssClass: 'md-book-rental-bg-in',
+recurring: {
+repeat: 'yearly',
+month: 8,
+day: 1
+}
+}, {
+background: '#f7f7bb80',
+start: '2022-09-01T00:00',
+end: '2022-09-30T00:00',
+cellCssClass: 'md-book-rental-bg-in',
+recurring: {
+repeat: 'yearly',
+month: 9,
+day: 1
+}
+}, {
+background: '#b2f1c080',
+start: '2022-10-01T00:00',
+end: '2022-10-31T23:59',
+cellCssClass: 'md-book-rental-bg-off',
+recurring: {
+repeat: 'yearly',
+month: 10,
+day: 1
+}
+}, {
+background: '#b2f1c080',
+start: '2022-11-01T00:00',
+end: '2022-11-30T00:00',
+cellCssClass: 'md-book-rental-bg-off',
+recurring: {
+repeat: 'yearly',
+month: 11,
+day: 1
+}
+}, {
+background: '#b2f1c080',
+start: '2022-12-01T00:00',
+end: '2022-12-31T00:00',
+cellCssClass: 'md-book-rental-bg-off',
+recurring: {
+repeat: 'yearly',
+month: 12,
+day: 1
+}
+}
+];
+var myCalendar = mobiscroll.datepicker('#demo-book-rental-months-ahead', {
+controls: ['calendar'],
+select: 'range',
+display: 'inline',
+calendarType: 'month',
+calendarSize: 6,
+min: '2022-09-26T00:00',
+showRangeLabels: false,
+inRangeInvalid: false,
+rangeEndInvalid: true,
+renderCalendarHeader: function () {
+return '<div mbsc-calendar-nav></div>' +
+'<div class="md-book-rental-header">' +
+    '<div class="md-book-rental-zone md-book-rental-pre">pre-season</div>' +
+    '<div class="md-book-rental-zone md-book-rental-in">in-season</div>' +
+    '<div class="md-book-rental-zone md-book-rental-off">off-season</div>' +
+    '<div class="md-book-rental-zone md-book-rental-booked">booked</div>' +
+    '<div mbsc-calendar-prev></div>' +
+    '<div mbsc-calendar-today></div>' +
+    '<div mbsc-calendar-next></div>' +
+    '</div>';
+}
+});
+
+function getColors(start, end) {
+return [{
+date: start,
+cellCssClass: 'vacation-check-in'
+}, {
+date: end,
+cellCssClass: 'vacation-check-out'
+}, {
+start: new Date(start.getFullYear(), start.getMonth(), start.getDate() + 1),
+end: new Date(end.getFullYear(), end.getMonth(), end.getDate() - 1),
+background: '#ffbaba80',
+cellCssClass: 'vacation-booked'
+}];
+}
+
+mobiscroll.util.http.getJson('https://trial.mobiscroll.com/getrentals/?year=' + now.getFullYear() + '&month=' + now.getMonth(), function (data) {
+var prices = data.prices;
+var bookings = data.bookings;
+var labels = [];
+var invalids = [];
+var colors = [];
+var endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0);
+
+for (var i = 0; i < prices.length; ++i) {
+var price = prices[i];
+var booked = bookings.find(function (b) { return formatDate('YYYY-M-D', new Date(b.checkIn)) === price.date; });
+if (booked) {
+var checkIn = new Date(booked.checkIn);
+var checkOut = new Date(booked.checkOut);
+var newCheckOut = new Date(checkOut.getFullYear(), checkOut.getMonth(), checkOut.getDate() - 1);
+colors = colors.concat(getColors(checkIn, checkOut));
+labels.push({
+start: checkIn,
+end: newCheckOut,
+text: 'booked',
+textColor: '#888'
+});
+invalids.push({
+start: checkIn,
+end: newCheckOut
+});
+endDate = checkOut;
+} else if (new Date(price.date) >= endDate) {
+labels.push({
+date: new Date(price.date),
+text: price.text,
+textColor: price.textColor
+});
+}
+}
+myCalendar.setOptions({ labels: labels, invalid: invalids, colors: colors.concat(monthColors) });
+}, 'jsonp');

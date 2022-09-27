@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
 use App\Entity\Hostel;
 use App\Entity\Room;
+use App\Form\BookingFormType;
 use App\Repository\HostelRepository;
 use App\Repository\RoomRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -100,9 +104,8 @@ class HotelController extends AbstractController
     }
 
 
-
-    //#[Route('/hotel-hyatt/{title}', name: 'app_hotel_hyatttt')]
-    public function room($title, $roomRepository): Response
+    #[Route('/hotel-hyatt/{title}', name: 'app_hotel_hyatttt')]
+    public function room(RoomRepository $roomRepository, $title, Request $request, EntityManagerInterface $entityManager): Response
     {
         $roomDetails = $roomRepository->findOneBy(['title' => $title]);
         if(!$roomDetails){
@@ -110,9 +113,26 @@ class HotelController extends AbstractController
             throw $this->createNotFoundException('L\'article n\'existe pas');
         }
 
+        $booking = new Booking();
+
+        $form = $this->createForm(BookingFormType::class, $booking);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //$booking->setSentAt(new \DateTime());
+
+            $entityManager->persist($booking);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Réservation effectuée');
+
+            return $this->redirectToRoute('app_account');
+        }
         return $this->render('hotel/roomhyatt.html.twig', [
             'controller_name' => 'HotelController',
             'roomDetails' => $roomDetails,
+            'form' => $form->createView()
         ]);
     }
 

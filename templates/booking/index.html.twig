@@ -14,24 +14,30 @@
     </ul>
 </div>
 {% endblock %}#}
-{% extends 'base.html.twig' %}
+{% extends 'headers/header.html.twig' %}
 
 {% block title %}Booking{% endblock %}
 
-{% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+{% block main %}
+    <main>
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
 
-    <h1>Booking</h1>
+        <div class="d-flex justify-content-end">
 
-    {{ form_start(form) }}
-    {{ form_row(form.startDate) }}
-    {{ form_row(form.endDate) }}
-    {{ form_row(form.amount) }}
-    {{ form_row(form.booker) }}
-    {{ form_row(form.room) }}
+            <h1>Booking</h1>
 
-    <button type="submit" class="btn">Valider</button>
-    {{ form_end(form) }}
+            {{ form_start(form) }}
+            {{ form_row(form.room) }}
+            {{ form_row(form.startDate) }}
+            {{ form_row(form.endDate) }}
+            {{ form_row(form.amount) }}
+            {{ form_row(form.booker) }}
+
+            <button type="submit" class="btn">Valider</button>
+
+            {{ form_end(form) }}
+        </div>
+    </main>
 {% endblock %}

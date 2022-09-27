@@ -29,11 +29,11 @@ class BookingController extends AbstractController
             $entityManager->persist($booking);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Message envoyé');
+            $this->addFlash('success', 'Réservation effectuée');
 
-            return $this->redirectToRoute('contact');
+            return $this->redirectToRoute('app_booking');
         }
-        return $this->render('booking/booking.html.twig', [
+        return $this->render('booking/index.html.twig', [
             'controller_name' => 'BookingController',
             'form' => $form->createView()
         ]);
