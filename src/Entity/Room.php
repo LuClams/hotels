@@ -39,7 +39,7 @@ class Room
     private $price;
 
     #[ORM\OneToMany(mappedBy: 'room', targetEntity: Booking::class, cascade: ['persist', 'remove'])]
-    private $booking;
+    private $bookings;
 
     #[ORM\ManyToOne(targetEntity: Hostel::class, inversedBy: 'room')]
     #[ORM\JoinColumn(nullable: false)]
@@ -64,9 +64,9 @@ class Room
 
 
     /**
-     * Permet d'obtenir un tables des jours qui ne sont pas disponible pour une annonce
+     * Permet d'obtenir un tableau des jours qui ne sont pas disponible
      *
-     * @return array Un tableau d'objet DateTime représentant les jours d'occupation
+     * @return array Un tableau d'objet représentant les jours d'occupation
      */
     public function getNotAvailableDays(): array
     {
@@ -76,7 +76,7 @@ class Room
             // calculer les jours qui se trouvent entre la date d'arrivé et de départ
             $resultat = range(
                 $booking->getStartDate()->getTimestamp(),
-                $booking->getEndDate()->getTimestamp,
+                $booking->getEndDate()->getTimestamp(),
                 24 * 60 * 60
             );
 
@@ -131,9 +131,6 @@ class Room
 
         return $this;
     }
-
-
-
 
 
     public function getDescription(): ?string

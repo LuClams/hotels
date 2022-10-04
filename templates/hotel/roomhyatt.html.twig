@@ -1,139 +1,154 @@
 {% extends 'headers/header.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
 {% block main %}
 
-   {# <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-                {#<img src="{{ asset('/uploads/'~image.name) }}" class="d-block w-100" alt="...">#}
-    {# <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
-                     alt=""
-                     style="max-height: 500px;
-                            max-width: 500px;
-margin: 10px">
-                <p>coucou</p>
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <img src="" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="" class="d-block w-100" alt="...">
+    <main>
+
+        <div style="max-width: 90%" class="d-flex justify-content-center">
+
+            <div id="carouselExampleIndicators" class="carousel slide carousel-dark" data-bs-ride="true">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                 {#    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    #}</div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
+                             alt=""
+                             style="max-height: 500px;
+                                    max-width: 1000px;
+                                    margin: 10px">
+                    </div>
+                    {#  <div class="carousel-item">#}
+                        {#  <img src="..." class="d-block w-100" alt="...">#}
+                    {#  <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
+                             alt=""
+                             style="max-height: 500px;
+                                    max-width: 1000px;
+                                    margin: 10px">
+                    </div>
+                    <div class="carousel-item">
+                        {#  <img src="..." class="d-block w-100" alt="...">#}
+                        {# <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
+                             alt=""
+                             style="max-height: 500px;
+                                    max-width: 1000px;
+                                    margin: 10px">
+                    </div>#}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+        <div class="p-3">
+            <p>
+                {{ roomDetails.description }}
+            </p>
 
-    <div>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+             <ul>
+                 <li>incididunt ut :</li>
+                 <li>incididunt ut labore et dolore magna aliqua.</li>
+                 <li>incididunt ut labore et dolore magna aliqua.</li>
+                 <li>incididunt ut labore et dolore magna aliqua.</li>
+                 <li>incididunt ut labore et dolore magna aliqua.</li>
 
-
-            incididunt ut :
-
-            incididunt ut labore et dolore magna aliqua.
-
-            incididunt ut labore et dolore magna aliqua.
-
-            incididunt ut labore et dolore magna aliqua.
-
-            incididunt ut labore et dolore magna aliqua.
-
-        </p>
-    </div>
-
-    <form>
-
-    </form>
-
-{% endblock %}#}
-<main>
-
-    <div style="max-width: 90%" class="d-flex justify-content-center">
-
-        <div id="carouselExampleIndicators" class="carousel slide carousel-dark" data-bs-ride="true">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-             {#    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                #}</div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
-                         alt=""
-                         style="max-height: 500px;
-                                max-width: 1000px;
-                                margin: 10px">
-                </div>
-                {#  <div class="carousel-item">#}
-                    {#  <img src="..." class="d-block w-100" alt="...">#}
-                {#  <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
-                         alt=""
-                         style="max-height: 500px;
-                                max-width: 1000px;
-                                margin: 10px">
-                </div>
-                <div class="carousel-item">
-                    {#  <img src="..." class="d-block w-100" alt="...">#}
-                    {# <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
-                         alt=""
-                         style="max-height: 500px;
-                                max-width: 1000px;
-                                margin: 10px">
-                </div>#}
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+             </ul>
         </div>
-    </div>
-    <div class="p-3">
-        <p>
-            {{ roomDetails.description }}
-        </p>
-
-         <ul>
-             <li>incididunt ut :</li>
-             <li>incididunt ut labore et dolore magna aliqua.</li>
-             <li>incididunt ut labore et dolore magna aliqua.</li>
-             <li>incididunt ut labore et dolore magna aliqua.</li>
-             <li>incididunt ut labore et dolore magna aliqua.</li>
-
-         </ul>
-    </div>
 
 
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
 
-    <div>
+        {% for flash_warning in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_warning }}</div>
+        {% endfor %}
 
-        <h1>Booking</h1>
+        <div>
 
-        {{ form_start(form) }}
-        {{ form_row(form.room) }}
-        {{ form_row(form.startDate) }}
-        {{ form_row(form.endDate) }}
-        {{ form_row(form.amount) }}
-        {{ form_row(form.booker) }}
+            <h3>Booking</h3>
+                  {{ form_start(form) }}
 
-        <button type="submit" class="btn">Valider</button>
-
+                    <div class="form-group">
+                        {{ form_label(form.room) }}
+                        {{ form_widget(form.room) }}
+                    </div>
+                    <div class="form-group"
+                        {{ form_label(form.startDate) }}
+                        {{ form_widget(form.startDate) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.endDate) }}
+                        {{ form_widget(form.endDate) }}
+                    </div>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <button type="submit" class="btn btn-primary">Valider</button>
+                        {% else %}
+                           {# <button type="submit" class="btn btn-secondary disabled">Connectez-vous pour valider la réservation</button>#}
+                            <button class="btn btn-primary">
+                                <a class="nav-link text-white" href="{{ path('app_login') }}" tabindex="-1" aria-disabled="true">
+                                    Connectez-vous pour pouvoir valider la réservation
+                                </a>
+                            </button>
+                    {% endif %}
+            <h4>Montant du sejour: {{ roomDetails.price /100 }} € / nuit</h4>
         {{ form_end(form) }}
-    </div>
 
-</main>
+        {#<form method="POST" action="">
+        <label for="room">Room:</label><br>
+                        <input type="text" id="room" name="room" readonly value="{{ roomDetails.title }}"><br>
+        #}
+                {#<div class="form-group">
+                        <label for="dates">startDate</label><br>
+                        <input type="date" id="dates" name="dates" >
+                    </div>
+                    <div class="form-group">
+                        <label for="dates">EndDate</label><br>
+                        <input type="date" id="dates" name="dates">
+                    </div>
+
+                {% if app.user %}
+                    <div class="form-group">
+                        <label for="booker">Booker</label><br>
+                        <input type="text" id="booker" name="booker" value="{{ app.user.firstname }} {{ app.user.lastname }}">
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label for="booker">Booker</label><br>
+                        <input type="text" id="booker" name="booker" value="">
+                    </div>
+                {% endif %}
+
+
+            </form>#}
+
+
+        {% block javascripts %}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+           <script>
+               $( document ).ready(function() {
+                   $('#booking_form_startDate, #booking_form_endDate').onclick().datepicker({
+                       format: 'dd/mm/yyyy',
+                       datesDisabled: [
+                           {% for day in room.notAvailableDays %}
+                            {{ day.format('d/m/Y') }}
+                           {% endfor %}
+                       ],
+                       startDate: new Date()
+                   });
+               })
+           </script>
+        {% endblock %}
+
+    </main>
 {% endblock %}

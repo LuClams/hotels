@@ -24,20 +24,41 @@
             <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
         {% endfor %}
 
-        <div class="d-flex justify-content-end">
+        <div>
 
             <h1>Booking</h1>
 
             {{ form_start(form) }}
-            {{ form_row(form.room) }}
-            {{ form_row(form.startDate) }}
-            {{ form_row(form.endDate) }}
-            {{ form_row(form.amount) }}
-            {{ form_row(form.booker) }}
+                {{ form_row(form.room) }}
+                {{ form_row(form.startDate) }}
+                {{ form_row(form.endDate) }}
+                {{ form_row(form.amount) }}
+                {{ form_row(form.booker) }}
 
             <button type="submit" class="btn">Valider</button>
 
             {{ form_end(form) }}
         </div>
     </main>
+    {% block javascripts %}
+        <script>
+            $( document ).ready(function() {
+            $( function() {
+            var dateToday = new Date();
+            var dates = $("#start-date, #end-date").datepicker({
+            defaultDate: "+2d",
+            changeMonth: true,
+            numberOfMonths: 1,
+            minDate: dateToday,
+            onSelect: function(selectedDate) {
+            var option = this.id === "start-date" ? "minDate" : "maxDate",
+            instance = $(this).data("datepicker"),
+            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+            dates.not(this).datepicker("option", option, date);
+            }
+            });
+            });
+            });
+        </script>
+    {% endblock %}
 {% endblock %}

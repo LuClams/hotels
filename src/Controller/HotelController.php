@@ -105,7 +105,7 @@ class HotelController extends AbstractController
 
 
     #[Route('/hotel-hyatt/{title}', name: 'app_hotel_hyatttt')]
-    public function room(RoomRepository $roomRepository, $title, Request $request, EntityManagerInterface $entityManager): Response
+    public function room(RoomRepository $roomRepository,Room $room, $title, Request $request, EntityManagerInterface $entityManager): Response
     {
         $roomDetails = $roomRepository->findOneBy(['title' => $title]);
         if(!$roomDetails){
@@ -113,25 +113,38 @@ class HotelController extends AbstractController
             throw $this->createNotFoundException('L\'article n\'existe pas');
         }
 
-        $booking = new Booking();
+        $bookings = new Booking();
 
-        $form = $this->createForm(BookingFormType::class, $booking);
+        $form = $this->createForm(BookingFormType::class, $bookings);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$booking->setSentAt(new \DateTime());
+            $user = $this->getUser();
 
-            $entityManager->persist($booking);
-            $entityManager->flush();
+            $bookings->setBooker($user)
+                    ->setRoom($room);
+            // Si les dates ne sont pas disponibles , message d'erreur
+            if (!$bookings->isBookableDates()) {
+                $this->addFlash(
+                    'warning',
+                    'Les dates que vous avez choisi sont indisponibles'
+                );
+            } else {
 
-            $this->addFlash('success', 'Réservation effectuée');
+                $entityManager->persist($bookings);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_account');
+                $this->addFlash('success', 'Réservation effectuée');
+
+                return $this->redirectToRoute('app_account');
+            }
         }
         return $this->render('hotel/roomhyatt.html.twig', [
             'controller_name' => 'HotelController',
             'roomDetails' => $roomDetails,
+            'room' => $room,
             'form' => $form->createView()
         ]);
     }

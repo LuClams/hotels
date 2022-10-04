@@ -73,4 +73,19 @@ class BookingRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @return Booking[]
+     */
+    public function findAllGreaterThanPrice($booking): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT room_id, start_date, end_date from booking'
+        )->setParameter('booking', $booking);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
 }

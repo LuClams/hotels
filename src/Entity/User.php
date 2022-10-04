@@ -35,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToOne(mappedBy: 'booker', targetEntity: Booking::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'booker', targetEntity: Booking::class, cascade: ['persist', 'remove'])]
     private $booking;
 
     public function getId(): ?int
