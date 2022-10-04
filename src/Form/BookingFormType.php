@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Booking;
 use DatePeriod;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormTypeInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Filter\Type\DateTimeFilterType;
 use Symfony\Component\Form\AbstractType;
@@ -22,18 +23,8 @@ class BookingFormType extends AbstractType
     {
         $builder
             ->add('room')
-            ->add('startDate',DateType::class, array(
-                'widget' => 'single_text',
-                'attr' => [
-                    'class' => 'datepicker'
-                ]
-            ))
-            ->add('endDate', DateType::class, array(
-                'widget' => 'single_text',
-                'attr' => [
-                    'class' => 'datepicker'
-                ]
-            ))
+            ->add('startDate',TextType::class)
+            ->add('endDate', TextType::class)
             ->add('amount')
             ->add('booker')
         ;

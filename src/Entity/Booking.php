@@ -69,7 +69,7 @@ class Booking
         $notAvailable = array_map($formatDay, $notAvailableDays);
 
         foreach($days as $day) {
-            if(array_search($day, $notAvailable)!== false) return false;
+            if(in_array($day, $notAvailable) !== false) return false;
         }
 
         return true;
@@ -78,7 +78,7 @@ class Booking
     /**
      * Permet de récupérer un tableau des journées qui correspondent à ma réservation
      *
-     * @return array Un tableau d'objet représentant les jours de la réservation
+     * @return array Un tableau d'objet Datetime représentant les jours de la réservation
      */
     public function getDays() {
         $resultat = range(
@@ -90,6 +90,7 @@ class Booking
         $days = array_map(function($dayTimestamp) {
             return new \DateTime(date('Y-m-d', $dayTimestamp));
         }, $resultat);
+
         return $days;
     }
 

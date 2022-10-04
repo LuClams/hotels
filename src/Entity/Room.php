@@ -66,14 +66,14 @@ class Room
     /**
      * Permet d'obtenir un tableau des jours qui ne sont pas disponible
      *
-     * @return array Un tableau d'objet représentant les jours d'occupation
+     * @return array Un tableau d'objet Datetime représentant les jours d'occupation
      */
     public function getNotAvailableDays(): array
     {
         $notAvailableDays = [];
 
         foreach ($this->bookings as $booking) {
-            // calculer les jours qui se trouvent entre la date d'arrivé et de départ
+            // calculer les jours qui se trouvent entre la date d'arrivée et de départ
             $resultat = range(
                 $booking->getStartDate()->getTimestamp(),
                 $booking->getEndDate()->getTimestamp(),

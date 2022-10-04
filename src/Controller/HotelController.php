@@ -122,17 +122,17 @@ class HotelController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //$booking->setSentAt(new \DateTime());
             $user = $this->getUser();
+            //$notAvailableDays = $this ->$room->getNotAvailableDays();
 
             $bookings->setBooker($user)
-                    ->setRoom($room);
+                ->setRoom($room);
             // Si les dates ne sont pas disponibles , message d'erreur
-            if (!$bookings->isBookableDates()) {
+            if(!$bookings->isBookableDates()) {
                 $this->addFlash(
                     'warning',
-                    'Les dates que vous avez choisi sont indisponibles'
+                    "Les dates que vous avez choisi sont indisponibles"
                 );
             } else {
-
                 $entityManager->persist($bookings);
                 $entityManager->flush();
 
@@ -141,6 +141,7 @@ class HotelController extends AbstractController
                 return $this->redirectToRoute('app_account');
             }
         }
+
         return $this->render('hotel/roomhyatt.html.twig', [
             'controller_name' => 'HotelController',
             'roomDetails' => $roomDetails,

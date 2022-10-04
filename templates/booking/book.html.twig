@@ -3,329 +3,95 @@
 {% block title %}Booking{% endblock %}
 
 {% block stylesheets %}
-    <style>
-        .mbsc-datepicker .md-book-rental-bg-off.vacation-check-in.mbsc-ltr {
-            background: linear-gradient( to left top, #ffbaba80 50%, #b2f1c080 50%) no-repeat;
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <!-- Vanilla Datepicker CSS -->
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css'>
+<style>
+        body {
+            /* Centring content */
+            min-height: 100vh;
+            display: grid;
+            place-content: center;
         }
 
-        .mbsc-datepicker .md-book-rental-bg-pre.vacation-check-in.mbsc-ltr {
-            background: linear-gradient( to left top, #ffbaba80 50%, #a3cdff80 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .md-book-rental-bg-in.vacation-check-in.mbsc-ltr {
-            background: linear-gradient( to left top, #ffbaba80 50%, #f7f7bb80 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .md-book-rental-bg-off.vacation-check-out.mbsc-ltr {
-            background: linear-gradient( to left top, #b2f1c080 50%, #ffbaba80 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .md-book-rental-bg-pre.vacation-check-out.mbsc-ltr {
-            background: linear-gradient( to left top, #a3cdff80 50%, #ffbaba80 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .md-book-rental-bg-in.vacation-check-out.mbsc-ltr {
-            background: linear-gradient( to left top, #f7f7bb80 50%, #ffbaba80 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .md-book-rental-bg-off.vacation-check-in.mbsc-rtl {
-            background: linear-gradient( to right bottom, #ffbaba80 50%, #b2f1c080 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .md-book-rental-bg-pre.vacation-check-in.mbsc-rtl {
-            background: linear-gradient( to right bottom, #ffbaba80 50%, #a3cdff80 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .md-book-rental-bg-in.vacation-check-in.mbsc-rtl {
-            background: linear-gradient( to right bottom, #ffbaba80 50%, #f7f7bb80 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .md-book-rental-bg-off.vacation-check-out.mbsc-rtl {
-            background: linear-gradient( to right bottom, #b2f1c080 50%, #ffbaba80 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .md-book-rental-bg-pre.vacation-check-out.mbsc-rtl {
-            background: linear-gradient( to right bottom, #a3cdff80 50%, #ffbaba80 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .md-book-rental-bg-in.vacation-check-out.mbsc-rtl {
-            background: linear-gradient( to right bottom, #f7f7bb80 50%, #ffbaba80 50%) no-repeat;
-        }
-
-        .mbsc-datepicker .vacation-check-out,
-        .mbsc-datepicker .vacation-check-in {
-            color: initial;
-        }
-
-        .mbsc-datepicker .vacation-check-in.mbsc-calendar-cell.mbsc-calendar-day-empty,
-        .mbsc-datepicker .vacation-check-out.mbsc-calendar-cell.mbsc-calendar-day-empty {
-            background: transparent;
-        }
-
-        .md-book-rental-header {
-            display: flex;
-            align-items: center;
-            justify-content: end;
-            margin-left: auto;
-            flex: 1 1;
-            overflow: hidden;
-        }
-
-        .md-book-rental-zone {
-            font-size: 12px;
-            padding: 3px 6px;
-            margin: 0 5px;
-            border-radius: 16px;
-            color: #1e1e1ecc;
-        }
-
-        .md-book-rental .mbsc-calendar-label-text {
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .md-book-rental-in {
-            background: #f7f7bb80;
-        }
-
-        .md-book-rental-pre {
-            background: #a3cdff80;
-        }
-
-        .md-book-rental-off {
-            background: #b2f1c080;
-        }
-
-        .md-book-rental-booked {
-            background: #ffbaba80;
+        /* Adapts a floating label for use with a left-handed input group icon */
+        .form-floating > .bi-calendar-date + .datepicker_input + label {
+            padding-left: 3.5rem;
+            z-index: 3;
         }
     </style>
 {% endblock %}
 {% block main %}
     <main>
-        <div id="demo-book-rental-months-ahead" class="md-book-rental"></div>
+        <h1 class="mb-4">Vanilla Datepicker for Bootstrap 5</h1>
+
+
+        <h2>Floating label only</h2>
+
+        <div class="form-floating mb-4 d-flex">
+            <input
+                    type="text"
+                    class="datepicker_input form-control border-2"
+                    id="datepicker1"
+                    required
+                    placeholder="DD/MM/YYYY">
+            <label for="datepicker1">Date input label 1</label>
+        </div>
+
+
+        <h2>Input group only</h2>
+
+        <div class="input-group mb-4">
+            <i class="bi bi-calendar-date input-group-text"></i>
+            <input type="text" class="datepicker_input form-control" placeholder="Date input 3 placeholder" required aria-label="Date input 3 (using aria-label)">
+        </div>
+
+
+        <h2>Floating label &amp; input group</h2>
+
+        <div class="form-floating input-group mb-4">
+            <i class="bi bi-calendar-date input-group-text"></i>
+            <input type="text" id="datepicker2" class="datepicker_input form-control" placeholder="DD/MM/YYYY" required>
+            <label for="datepicker2">Date input label 2</label>
+        </div>
+
+
+        <p>Requires <a target=_blank title="[new window]" href="https://mymth.github.io/vanillajs-datepicker/#/">vanillajs-datepicker</a> plus the usual Bootstrap 5 CSS &amp; JS.</p>
+
     </main>
     {% block javascripts %}
-        <script>
+<!-- Bootstrap 5 JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
-                mobiscroll.setOptions({
-                locale: mobiscroll.localeFr,
-                theme: 'ios',
-                themeVariant: 'light'
-            });
+<!-- Vanilla Datepicker JS -->
+<script src='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js'></script>
+    /* Bootstrap 5 CSS and icons included */
+    /* vanillajs-datepicker 1.1.4 CSS included */
 
-                var formatDate = mobiscroll.util.datetime.formatDate;
-                var now = new Date();
-                var endDate;
-                var monthColors = [{
-                background: '#b2f1c080',
-                start: '2022-01-01T00:00',
-                end: '2022-01-31T00:00',
-                cellCssClass: 'md-book-rental-bg-off',
-                recurring: {
-                repeat: 'yearly',
-                month: 1,
-                day: 1
-            }
-            }, {
-                background: '#b2f1c080',
-                start: '2022-02-01T00:00',
-                end: '2022-02-28T00:00',
-                cellCssClass: 'md-book-rental-bg-off',
-                recurring: {
-                repeat: 'yearly',
-                month: 2,
-                day: 1
-            }
-            }, {
-                background: '#b2f1c080',
-                cellCssClass: 'md-book-rental-bg-off',
-                recurring: {
-                repeat: 'yearly',
-                month: 2,
-                day: 29
-            }
-            }, {
-                background: '#a3cdff80',
-                start: '2022-03-01T00:00',
-                end: '2022-03-31T23:59',
-                cellCssClass: 'md-book-rental-bg-pre',
-                recurring: {
-                repeat: 'yearly',
-                month: 3,
-                day: 1
-            }
-            }, {
-                background: '#a3cdff80',
-                start: '2022-04-01T00:00',
-                end: '2022-04-30T00:00',
-                cellCssClass: 'md-book-rental-bg-pre',
-                recurring: {
-                repeat: 'yearly',
-                month: 4,
-                day: 1
-            }
-            },
-                {
-                    background: '#a3cdff80',
-                    start: '2022-05-01T00:00',
-                    end: '2022-05-31T00:00',
-                    cellCssClass: 'md-book-rental-bg-pre',
-                    recurring: {
-                    repeat: 'yearly',
-                    month: 5,
-                    day: 1
+        <script type="text/javascript">
+            /* Bootstrap 5 JS included */
+            /* vanillajs-datepicker 1.1.4 JS included */
+
+            const getDatePickerTitle = elem => {
+                // From the label or the aria-label
+                const label = elem.nextElementSibling;
+                let titleText = '';
+                if (label && label.tagName === 'LABEL') {
+                    titleText = label.textContent;
+                } else {
+                    titleText = elem.getAttribute('aria-label') || '';
                 }
-                }, {
-                background: '#f7f7bb80',
-                start: '2022-06-01T00:00',
-                end: '2022-06-30T00:00',
-                cellCssClass: 'md-book-rental-bg-in',
-                recurring: {
-                repeat: 'yearly',
-                month: 6,
-                day: 1
-            }
-            },
-                {
-                    background: '#f7f7bb80',
-                    start: '2022-07-01T00:00',
-                    end: '2022-07-31T00:00',
-                    cellCssClass: 'md-book-rental-bg-in',
-                    recurring: {
-                    repeat: 'yearly',
-                    month: 7,
-                    day: 1
-                }
-                }, {
-                background: '#f7f7bb80',
-                start: '2022-08-01T00:00',
-                end: '2022-08-31T00:00',
-                cellCssClass: 'md-book-rental-bg-in',
-                recurring: {
-                repeat: 'yearly',
-                month: 8,
-                day: 1
-            }
-            }, {
-                background: '#f7f7bb80',
-                start: '2022-09-01T00:00',
-                end: '2022-09-30T00:00',
-                cellCssClass: 'md-book-rental-bg-in',
-                recurring: {
-                repeat: 'yearly',
-                month: 9,
-                day: 1
-            }
-            }, {
-                background: '#b2f1c080',
-                start: '2022-10-01T00:00',
-                end: '2022-10-31T23:59',
-                cellCssClass: 'md-book-rental-bg-off',
-                recurring: {
-                repeat: 'yearly',
-                month: 10,
-                day: 1
-            }
-            }, {
-                background: '#b2f1c080',
-                start: '2022-11-01T00:00',
-                end: '2022-11-30T00:00',
-                cellCssClass: 'md-book-rental-bg-off',
-                recurring: {
-                repeat: 'yearly',
-                month: 11,
-                day: 1
-            }
-            }, {
-                background: '#b2f1c080',
-                start: '2022-12-01T00:00',
-                end: '2022-12-31T00:00',
-                cellCssClass: 'md-book-rental-bg-off',
-                recurring: {
-                repeat: 'yearly',
-                month: 12,
-                day: 1
-            }
-            }
-                ];
-
-            var myCalendar = mobiscroll.datepicker('#demo-book-rental-months-ahead', {
-                controls: ['calendar'],
-                select: 'range',
-                display: 'inline',
-                calendarType: 'month',
-                calendarSize: 6,
-                min: '2022-09-26T00:00',
-                showRangeLabels: false,
-                inRangeInvalid: false,
-                rangeEndInvalid: true,
-                renderCalendarHeader: function () {
-                    return '<div mbsc-calendar-nav></div>' +
-                        '<div class="md-book-rental-header">' +
-                        '<div class="md-book-rental-zone md-book-rental-pre">pre-season</div>' +
-                        '<div class="md-book-rental-zone md-book-rental-in">in-season</div>' +
-                        '<div class="md-book-rental-zone md-book-rental-off">off-season</div>' +
-                        '<div class="md-book-rental-zone md-book-rental-booked">booked</div>' +
-                        '<div mbsc-calendar-prev></div>' +
-                        '<div mbsc-calendar-today></div>' +
-                        '<div mbsc-calendar-next></div>' +
-                        '</div>';
-                }
-            });
-
-            function getColors(start, end) {
-                return [{
-                    date: start,
-                    cellCssClass: 'vacation-check-in'
-                }, {
-                    date: end,
-                    cellCssClass: 'vacation-check-out'
-                }, {
-                    start: new Date(start.getFullYear(), start.getMonth(), start.getDate() + 1),
-                    end: new Date(end.getFullYear(), end.getMonth(), end.getDate() - 1),
-                    background: '#ffbaba80',
-                    cellCssClass: 'vacation-booked'
-                }];
+                return titleText;
             }
 
-            mobiscroll.util.http.getJson('https://trial.mobiscroll.com/getrentals/?year=' + now.getFullYear() + '&month=' + now.getMonth(), function (data) {
-                var prices = data.prices;
-                var bookings = data.bookings;
-                var labels = [];
-                var invalids = [];
-                var colors = [];
-                var endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0);
-
-                for (var i = 0; i < prices.length; ++i) {
-                    var price = prices[i];
-                    var booked = bookings.find(function (b) { return formatDate('YYYY-M-D', new Date(b.checkIn)) === price.date; });
-                    if (booked) {
-                        var checkIn = new Date(booked.checkIn);
-                        var checkOut = new Date(booked.checkOut);
-                        var newCheckOut = new Date(checkOut.getFullYear(), checkOut.getMonth(), checkOut.getDate() - 1);
-                        colors = colors.concat(getColors(checkIn, checkOut));
-                        labels.push({
-                            start: checkIn,
-                            end: newCheckOut,
-                            text: 'booked',
-                            textColor: '#888'
-                        });
-                        invalids.push({
-                            start: checkIn,
-                            end: newCheckOut
-                        });
-                        endDate = checkOut;
-                    } else if (new Date(price.date) >= endDate) {
-                        labels.push({
-                            date: new Date(price.date),
-                            text: price.text,
-                            textColor: price.textColor
-                        });
-                    }
-                }
-                myCalendar.setOptions({ labels: labels, invalid: invalids, colors: colors.concat(monthColors) });
-            }, 'jsonp');
+            const elems = document.querySelectorAll('.datepicker_input');
+            for (const elem of elems) {
+                const datepicker = new Datepicker(elem, {
+                    'format': 'dd/mm/yyyy', // UK format
+                    title: getDatePickerTitle(elem)
+                });
+            }
         </script>
     {% endblock %}
 

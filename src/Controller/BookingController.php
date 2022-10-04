@@ -16,39 +16,39 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookingController extends AbstractController
 {
     #[Route('/booking', name: 'app_booking')]
-    public function index(Request $request, EntityManagerInterface $entityManager, Room $room): Response
+    public function index(Room $room, Request $request, EntityManagerInterface $entityManager)
     {
-        $booking = new Booking();
+        $bookings = new Booking();
 
-        $form = $this->createForm(BookingFormType::class, $booking);
+        $form = $this->createForm(BookingFormType::class, $bookings);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$booking->setSentAt(new \DateTime());
             $user = $this->getUser();
+            //$notAvailableDays = $this ->$room->getNotAvailableDays();
 
-            $booking->setBooker($user)
-                    ->setRoom($room);
+            $bookings->setBooker($user)
+                     ->setRoom($room);
             // Si les dates ne sont pas disponibles , message d'erreur
-            if(!$booking->isBookableDates()) {
+            if(!$bookings->isBookableDates()) {
                 $this->addFlash(
                     'warning',
                     "Les dates que vous avez choisi sont indisponibles"
                 );
             } else {
+                $entityManager->persist($bookings);
+                $entityManager->flush();
 
+                $this->addFlash('success', 'Réservation effectuée');
 
-            $entityManager->persist($booking);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Réservation effectuée');
-
-            return $this->redirectToRoute('app_account');
+                return $this->redirectToRoute('app_account');
             }
         }
-        return $this->render('hotel/roomhyatt.html.twig', [
-            'controller_name' => 'BookingController',
+        return $this->render('booking/booking.html.twig', [
+            //'controller_name' => 'BookingController',
+            'room' => $room,
             'form' => $form->createView()
         ]);
 

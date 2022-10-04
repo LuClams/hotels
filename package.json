@@ -6,6 +6,7 @@
         "@symfony/webpack-encore": "^3.0.0",
         "core-js": "^3.23.0",
         "regenerator-runtime": "^0.13.9",
+        "vanillajs-datepicker": "^1.2.0",
         "webpack-notifier": "^1.15.0"
     },
     "license": "UNLICENSED",
