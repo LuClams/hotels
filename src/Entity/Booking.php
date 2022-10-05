@@ -19,17 +19,17 @@ class Booking
     /**
      * @ORM\Column(type="string")
      */
-    #[ORM\ManyToOne(inversedBy: 'booking', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist', 'remove'], inversedBy: 'booking')]
     #[ORM\JoinColumn(nullable: false)]
     private $booker;
 
     #[ORM\Column(type: 'datetime')]
-    #[Assert\GreaterThanOrEqual('today')]
+    #[Assert\GreaterThan('today', message: "La date d'arrivée doit être ultérieure à la date de d'aujourd'hui !" )]
     private $startDate;
 
 
     #[ORM\Column(type: 'datetime')]
-    #[Assert\Expression('this.getStartDate() < this.getEndDate()')]
+    #[Assert\GreaterThan(propertyPath: 'startDate', message: "La date de départ doit être plus éloignée que la date d'arrivée !")]
     private $endDate;
 
     #[ORM\Column(type: 'float')]
@@ -79,8 +79,10 @@ class Booking
      * Permet de récupérer un tableau des journées qui correspondent à ma réservation
      *
      * @return array Un tableau d'objet Datetime représentant les jours de la réservation
+     * @throws \Exception
      */
-    public function getDays() {
+    public function getDays(): array
+    {
         $resultat = range(
             $this->startDate->getTimestamp(),
             $this->endDate->getTimestamp(),
@@ -88,7 +90,7 @@ class Booking
         );
 
         $days = array_map(function($dayTimestamp) {
-            return new \DateTime(date('Y-m-d', $dayTimestamp));
+            return new \DateTime (date('Y-m-d', $dayTimestamp));
         }, $resultat);
 
         return $days;

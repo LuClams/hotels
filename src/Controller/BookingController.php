@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
-use App\Entity\Contact;
 use App\Entity\Room;
 use App\Form\BookingFormType;
-use App\Form\ContactFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +25,7 @@ class BookingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //$booking->setSentAt(new \DateTime());
             $user = $this->getUser();
-            //$notAvailableDays = $this ->$room->getNotAvailableDays();
+
 
             $bookings->setBooker($user)
                      ->setRoom($room);
@@ -47,7 +45,7 @@ class BookingController extends AbstractController
             }
         }
         return $this->render('booking/booking.html.twig', [
-            //'controller_name' => 'BookingController',
+            'controller_name' => 'BookingController',
             'room' => $room,
             'form' => $form->createView()
         ]);

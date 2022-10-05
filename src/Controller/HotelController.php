@@ -125,7 +125,7 @@ class HotelController extends AbstractController
             //$notAvailableDays = $this ->$room->getNotAvailableDays();
 
             $bookings->setBooker($user)
-                ->setRoom($room);
+                     ->setRoom($room);
             // Si les dates ne sont pas disponibles , message d'erreur
             if(!$bookings->isBookableDates()) {
                 $this->addFlash(
@@ -138,7 +138,6 @@ class HotelController extends AbstractController
 
                 $this->addFlash('success', 'Réservation effectuée');
 
-                return $this->redirectToRoute('app_account');
             }
         }
 

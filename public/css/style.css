@@ -66,5 +66,8 @@ footer > ul {
     font-size: 2.5rem;
 }
 
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+    background-color: lightcoral !important;
 
+}
 
