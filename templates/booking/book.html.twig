@@ -1,101 +1,61 @@
-{% extends 'headers/header.html.twig' %}
-
-{% block title %}Booking{% endblock %}
-
-{% block stylesheets %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
-    <!-- Vanilla Datepicker CSS -->
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css'>
-<style>
-        body {
-            /* Centring content */
-            min-height: 100vh;
-            display: grid;
-            place-content: center;
-        }
-
-        /* Adapts a floating label for use with a left-handed input group icon */
-        .form-floating > .bi-calendar-date + .datepicker_input + label {
-            padding-left: 3.5rem;
-            z-index: 3;
-        }
-    </style>
-{% endblock %}
 {% block main %}
-    <main>
-        <h1 class="mb-4">Vanilla Datepicker for Bootstrap 5</h1>
 
+<main>
+    <div style="max-width: 90%" class="d-flex justify-content-center">
 
-        <h2>Floating label only</h2>
-
-        <div class="form-floating mb-4 d-flex">
-            <input
-                    type="text"
-                    class="datepicker_input form-control border-2"
-                    id="datepicker1"
-                    required
-                    placeholder="DD/MM/YYYY">
-            <label for="datepicker1">Date input label 1</label>
+        <div id="carouselExampleIndicators" class="carousel slide carousel-dark" data-bs-ride="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                {#    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                #}</div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
+                         alt=""
+                         style="max-height: 500px;
+                                    max-width: 1000px;
+                                    margin: 10px">
+                </div>
+                {#  <div class="carousel-item">#}
+                {#  <img src="..." class="d-block w-100" alt="...">#}
+                {#  <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
+                             alt=""
+                             style="max-height: 500px;
+                                    max-width: 1000px;
+                                    margin: 10px">
+                    </div>
+                    <div class="carousel-item">
+                        {#  <img src="..." class="d-block w-100" alt="...">#}
+                {# <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
+                             alt=""
+                             style="max-height: 500px;
+                                    max-width: 1000px;
+                                    margin: 10px">
+                    </div>#}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+    </div>
+    <div class="p-3">
+        <p>
+            {{ roomDetails.description }}
+        </p>
 
+        <ul>
+            <li>incididunt ut :</li>
+            <li>incididunt ut labore et dolore magna aliqua.</li>
+            <li>incididunt ut labore et dolore magna aliqua.</li>
+            <li>incididunt ut labore et dolore magna aliqua.</li>
+            <li>incididunt ut labore et dolore magna aliqua.</li>
 
-        <h2>Input group only</h2>
-
-        <div class="input-group mb-4">
-            <i class="bi bi-calendar-date input-group-text"></i>
-            <input type="text" class="datepicker_input form-control" placeholder="Date input 3 placeholder" required aria-label="Date input 3 (using aria-label)">
-        </div>
-
-
-        <h2>Floating label &amp; input group</h2>
-
-        <div class="form-floating input-group mb-4">
-            <i class="bi bi-calendar-date input-group-text"></i>
-            <input type="text" id="datepicker2" class="datepicker_input form-control" placeholder="DD/MM/YYYY" required>
-            <label for="datepicker2">Date input label 2</label>
-        </div>
-
-
-        <p>Requires <a target=_blank title="[new window]" href="https://mymth.github.io/vanillajs-datepicker/#/">vanillajs-datepicker</a> plus the usual Bootstrap 5 CSS &amp; JS.</p>
-
-    </main>
-    {% block javascripts %}
-<!-- Bootstrap 5 JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-
-<!-- Vanilla Datepicker JS -->
-<script src='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js'></script>
-    /* Bootstrap 5 CSS and icons included */
-    /* vanillajs-datepicker 1.1.4 CSS included */
-
-        <script type="text/javascript">
-            /* Bootstrap 5 JS included */
-            /* vanillajs-datepicker 1.1.4 JS included */
-
-            const getDatePickerTitle = elem => {
-                // From the label or the aria-label
-                const label = elem.nextElementSibling;
-                let titleText = '';
-                if (label && label.tagName === 'LABEL') {
-                    titleText = label.textContent;
-                } else {
-                    titleText = elem.getAttribute('aria-label') || '';
-                }
-                return titleText;
-            }
-
-            const elems = document.querySelectorAll('.datepicker_input');
-            for (const elem of elems) {
-                const datepicker = new Datepicker(elem, {
-                    'format': 'dd/mm/yyyy', // UK format
-                    title: getDatePickerTitle(elem)
-                });
-            }
-        </script>
-    {% endblock %}
-
+        </ul>
+    </div>
 {% endblock %}
-
-
-

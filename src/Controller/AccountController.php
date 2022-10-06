@@ -2,6 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
+use App\Entity\Room;
+use App\Entity\User;
+use App\Repository\BookingRepository;
+use App\Repository\RoomRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,10 +14,37 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccountController extends AbstractController
 {
     #[Route('/account/{?id}', name: 'app_account')]
-    public function index(): Response
+   // public function index(): Response
+   // {
+   //     return $this->render('account/account.html.twig', [
+   //         'controller_name' => 'AccountController',
+   //     ]);
+   // }
+    #[Route('/user/{id}', name: 'app_user_show')]
+    public function index($booker, $user, BookingRepository $bookingRepository): Response
     {
-        return $this->render('account/account.html.twig', [
+        $bookings = $bookingRepository->findBy($booker);
+
+        return $this->render('user/index.html.twig', [
             'controller_name' => 'AccountController',
+            'bookings' => $bookings,
+            'user' => $user
+        ]);
+    }
+
+ //   public function myAccount() {
+ //       return $this->render('user/index.html.twig', [
+ //           'user' => $this->getUser()
+ //       ]);
+ //   }
+
+    #[Route('/account/bookings', name: 'app_account_bookings')]
+    public function bookings(User $user) {
+
+        $user = $this->getUser();
+
+        return $this->render('account/bookings.html.twig', [
+            'user' => $user
         ]);
     }
 }

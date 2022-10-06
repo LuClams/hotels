@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $isVerified = false;
 
     #[ORM\OneToMany(mappedBy: 'booker', targetEntity: Booking::class, cascade: ['persist', 'remove'])]
-    private $booking;
+    private $bookings;
 
     public function getId(): ?int
     {
@@ -144,19 +144,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getBooking(): ?Booking
+    public function getBookings()
     {
-        return $this->booking;
+        return $this->bookings;
     }
 
-    public function setBooking(Booking $booking): self
+    public function setBookings(?Booking $bookings): self
     {
         // set the owning side of the relation if necessary
-        if ($booking->getBooker() !== $this) {
-            $booking->setBooker($this);
+        if ($bookings->getBooker() !== $this) {
+            $bookings->setBooker($this);
         }
 
-        $this->booking = $booking;
+        $this->bookings = $bookings;
 
         return $this;
     }

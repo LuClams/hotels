@@ -35,7 +35,7 @@ class Room
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'float')]
     private $price;
 
     #[ORM\OneToMany(mappedBy: 'room', targetEntity: Booking::class, cascade: ['persist', 'remove'])]
@@ -56,10 +56,17 @@ class Room
     #[Vich\UploadableField(mapping: 'room', fileNameProperty: 'image')]
     private $imageFile;
 
+    #[ORM\Column]
+    private ?int $countrooms = null;
+
+    #[ORM\OneToMany(mappedBy: 'room', targetEntity: Slideimage::class, orphanRemoval: true)]
+    private Collection $slideimages;
+
 
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
+        $this->slideimages = new ArrayCollection();
     }
 
 
@@ -212,6 +219,48 @@ class Room
     public function setSupervisor(?Supervisor $supervisor): self
     {
         $this->supervisor = $supervisor;
+
+        return $this;
+    }
+
+    public function getCountrooms(): ?int
+    {
+        return $this->countrooms;
+    }
+
+    public function setCountrooms(int $countrooms): self
+    {
+        $this->countrooms = $countrooms;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Slideimage>
+     */
+    public function getSlideimages(): Collection
+    {
+        return $this->slideimages;
+    }
+
+    public function addSlideimage(Slideimage $slideimage): self
+    {
+        if (!$this->slideimages->contains($slideimage)) {
+            $this->slideimages->add($slideimage);
+            $slideimage->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSlideimage(Slideimage $slideimage): self
+    {
+        if ($this->slideimages->removeElement($slideimage)) {
+            // set the owning side to null (unless already changed)
+            if ($slideimage->getRoom() === $this) {
+                $slideimage->setRoom(null);
+            }
+        }
 
         return $this;
     }

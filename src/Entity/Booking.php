@@ -19,7 +19,7 @@ class Booking
     /**
      * @ORM\Column(type="string")
      */
-    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist', 'remove'], inversedBy: 'booking')]
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist', 'remove'], inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
     private $booker;
 
@@ -35,7 +35,7 @@ class Booking
     #[ORM\Column(type: 'float')]
     private $amount;
 
-    #[ORM\ManyToOne(targetEntity: Room::class, cascade: ['persist', 'remove'], inversedBy: 'booking')]
+    #[ORM\ManyToOne(targetEntity: Room::class, cascade: ['persist', 'remove'], inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
     private $room;
 
