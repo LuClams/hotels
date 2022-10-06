@@ -1,26 +1,54 @@
 {% extends 'headers/header.html.twig' %}
-
-{% block title %}
-    {{ room.title }}
-{% endblock %}
+{% block tag_title %} Nos Suites - URUS {% endblock %}
+{% block title %} {{ room.title }} {% endblock %}
 
 {% block main %}
-    <div class="room-title" >
-        <img src="{{ vich_uploader_asset(room, 'imageFile') }}" alt="">
-        <div class="container">
+
+    <div class="card room-title" >
+        <img src="{{ vich_uploader_asset(room, 'imageFile') }}" alt="" class="card-img">
+        <div class="container card-img-overlay">
             <h1>{{ room.title }}</h1>
             <p>{{ room.description }}</p>
             <p class="h2">
-                <strong>{{ room.countrooms }} chambres</strong> pour <strong>{{ room.price / 100}}&euro;</strong> par nuit
+                <strong>{{ room.price / 100}}&euro;</strong> par nuit
             </p>
             <a href="#" class="btn btn-primary"> Réserver ! </a>
         </div>
     </div>
+
     
     <div class="container">
         <div class="row">
             <div class="col-md-8 mb-3">
-                {{ room.description }}
+                {{ room.description | raw }}
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        {% for slideimage in room.slideimages %}
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active"{% endif %} aria-current="true" aria-label="Slide 1"></button>
+                        {% endfor %}
+                    </div>
+                    <div class="carousel-inner">
+                        {% for slideimage in room.slideimages %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img src="{{ slideimage.url }}" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>{{ room.title }}</h5>
+                                    <p>{{ slideimage.caption }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
             </div>
             <div class="col">
                 <div class="row">
@@ -37,5 +65,6 @@
             </div>
         </div>
     </div>
-{% endblock %}
+
+{% endblock main%}
 

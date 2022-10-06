@@ -18,12 +18,18 @@ class BookingFormType extends AbstractType
         $this->transformer = $transformer;
     }
 
+    public function getConfiguration($label, $placeholder) {
+        return [
+            'label' => $label,
+            'attr' => $placeholder
+        ];
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('room')
-            ->add('startDate',TextType::class)
-            ->add('endDate', TextType::class)
+            ->add('startDate',TextType::class, $this->getConfiguration('Début du séjour', 'Choisissez la date de début de votre séjour'))
+            ->add('endDate', TextType::class, $this->getConfiguration('Fin du séjour','Choisissez la date de fin de votre séjour' ))
             ->add('amount')
             ->add('booker')
         ;

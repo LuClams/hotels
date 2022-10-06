@@ -8,20 +8,22 @@
 
         <div class="row">
             {%for room in rooms %}
+                {% set url = path('app_room_show', {'title':room.title}) %}
                 <div class="col-md-4">
                     <div class="card bg-light mb-3">
                         <div class="card-header text-center">
                             <strong>{{ room.price / 100 }}&euro; / nuit</strong><br>
                         </div>
+                        <a href="{{ url }}"></a>
                         <img src="{{ vich_uploader_asset(room, 'imageFile') }}" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block;">
                         <div class="card-body">
                             <h4 class="card-title">
-                                {{ room.title }}
+                                <a href="{{ url }}">{{ room.title }}</a>
                             </h4>
                             <p class="card-text">
                                 {{ room.description }}
                             </p>
-                            <a href="#" class="btn btn-secondary"></a>
+                            <a href="{{ url }}" class="btn btn-secondary">En savoir plus</a>
                         </div>
                     </div>
                 </div>{% endfor %}
