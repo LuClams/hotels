@@ -39,7 +39,10 @@ class BookingController extends AbstractController
                 $entityManager->persist($bookings);
                 $entityManager->flush();
 
-                $this->addFlash('success', 'Réservation effectuée');
+                $this->addFlash(
+                    'success',
+                    'Réservation effectuée'
+                );
 
                 return $this->redirectToRoute('app_account');
             }
