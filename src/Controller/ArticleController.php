@@ -12,7 +12,7 @@ class ArticleController extends AbstractController
   // #[Route('/hotel-westeen/{name}', name: 'app_hotel_westeen_{name}', methods:"POST")]
   // public function roomDetails(string $name = 'AZUR') :Response
   // {
-  //     return $this->render('article/index.html.twig', [
+  //     return $this->render('article/inde.html.twig', [
   //     'controller_name' => 'ArticleController',
   //         'name' => $name
   //     ]);

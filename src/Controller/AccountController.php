@@ -13,33 +13,35 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AccountController extends AbstractController
 {
-    #[Route('/account/{?id}', name: 'app_account')]
-   // public function index(): Response
+   #[Route('/account', name: 'app_account')]
+   public function myAccount() {
+      return $this->render('user/account.html.twig', [
+          'user' => $this->getUser()
+      ]);
+   }
+
+
+    // public function index(): Response
    // {
    //     return $this->render('account/account.html.twig', [
    //         'controller_name' => 'AccountController',
    //     ]);
    // }
-    #[Route('/user/{id}', name: 'app_user_show')]
-    public function index($booker, $user, BookingRepository $bookingRepository): Response
-    {
-        $bookings = $bookingRepository->findBy($booker);
+//  #[Route('/user/{id}', name: 'app_user_show')]
+//  public function index($booker, $user, BookingRepository $bookingRepository): Response
+//  {
+//      $bookings = $bookingRepository->findBy($booker);
+//
+//      return $this->render('inde.html.twig', [
+//          'controller_name' => 'AccountController',
+//          'bookings' => $bookings,
+//          'user' => $user
+//      ]);
+//  }
 
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'AccountController',
-            'bookings' => $bookings,
-            'user' => $user
-        ]);
-    }
-
- //   public function myAccount() {
- //       return $this->render('user/index.html.twig', [
- //           'user' => $this->getUser()
- //       ]);
- //   }
 
     #[Route('/account/bookings', name: 'app_account_bookings')]
-    public function bookings(User $user) {
+    public function bookings() {
 
         $user = $this->getUser();
 

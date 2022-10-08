@@ -1,5 +1,5 @@
 {% extends 'headers/header.html.twig' %}
-{% block tag_title %} Nos Suites - URUS {% endblock %}
+{% block tag_title %} Nos Suites - {{ room.title }} {% endblock %}
 {% block title %} {{ room.title }} {% endblock %}
 
 {% block main %}
@@ -7,12 +7,13 @@
     <div class="card room-title" >
         <img src="{{ vich_uploader_asset(room, 'imageFile') }}" alt="" class="card-img">
         <div class="container card-img-overlay">
-            <h1>{{ room.title }}</h1>
+            <h1>{{ room.title }} </h1>
+            <h2>Hotel - {{ room.hostel }}</h2>
             <p>{{ room.description }}</p>
             <p class="h2">
                 <strong>{{ room.price / 100}}&euro;</strong> par nuit
             </p>
-            <a href="#" class="btn btn-primary"> Réserver ! </a>
+            <a href="{{ path('app_booking_create', {'title': room.title}) }}" class="btn btn-primary"> Réserver ! </a>
         </div>
     </div>
 

@@ -90,3 +90,7 @@ div.room-title h1, div.room-title p {
 div.carousel-caption {
     text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
 }
+div.card.room-title > div > h2 {
+    color: white;
+    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+}

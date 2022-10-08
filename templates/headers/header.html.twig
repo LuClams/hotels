@@ -65,6 +65,12 @@
                                    href="{{ path('app_account') }}"
                                    tabindex="-1" aria-disabled="true">{{ app.user.firstname }} {{ app.user.lastname }}
                                 </a>
+                                <button class="btn btn-primary" type="submit" >
+                                    <a href="{{ path('app_logout') }}"
+                                       style="color: inherit; text-decoration: none;">
+                                        Se déconnecter
+                                    </a>
+                                </button>
                             {% else %}
                                 <a class="nav-link text-white"
                                    href="{{ path('app_login') }}"

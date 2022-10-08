@@ -23,7 +23,7 @@ class RoomController extends AbstractController
      * Permet d'afficher une seule Suite
      * @return Response
      */
-    #[Route('/rooms/{title}')]
+    #[Route('/rooms/{title}', name: 'app_rooms_show')]
     public function show($title, RoomRepository $roomRepository) {
         // Je récupère la Suite qui correspond au title-
         $room = $roomRepository->findOneByTitle($title);

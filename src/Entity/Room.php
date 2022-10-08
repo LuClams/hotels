@@ -62,11 +62,15 @@ class Room
     #[ORM\OneToMany(mappedBy: 'room', targetEntity: Slideimage::class, orphanRemoval: true)]
     private Collection $slideimages;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'bookedrooms')]
+    private Collection $booker;
+
 
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
         $this->slideimages = new ArrayCollection();
+        $this->booker = new ArrayCollection();
     }
 
 
@@ -261,6 +265,30 @@ class Room
                 $slideimage->setRoom(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getBooker(): Collection
+    {
+        return $this->booker;
+    }
+
+    public function addBooker(User $booker): self
+    {
+        if (!$this->booker->contains($booker)) {
+            $this->booker->add($booker);
+        }
+
+        return $this;
+    }
+
+    public function removeBooker(User $booker): self
+    {
+        $this->booker->removeElement($booker);
 
         return $this;
     }

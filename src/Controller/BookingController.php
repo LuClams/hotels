@@ -13,7 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BookingController extends AbstractController
 {
-    #[Route('/booking', name: 'app_booking')]
+  //  #[Route('/booking', name: 'app_booking')]
+    #[Route('/rooms/{title}/book', name: 'app_booking_create')]
     public function index(Room $room, Request $request, EntityManagerInterface $entityManager)
     {
         $bookings = new Booking();
@@ -23,7 +24,7 @@ class BookingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$booking->setSentAt(new \DateTime());
+            //$bookings->createdAt(new \DateTime());
             $user = $this->getUser();
 
 
@@ -39,19 +40,23 @@ class BookingController extends AbstractController
                 $entityManager->persist($bookings);
                 $entityManager->flush();
 
-                $this->addFlash(
-                    'success',
-                    'Réservation effectuée'
-                );
-
-                return $this->redirectToRoute('app_account');
+                return $this->redirectToRoute('app_booking_show', ['id' => $bookings->getId(), 'withSuccess' => true]);
             }
         }
-        return $this->render('booking/booking.html.twig', [
-            'controller_name' => 'BookingController',
+        return $this->render('booking/book.html.twig', [
             'room' => $room,
             'form' => $form->createView()
         ]);
 
     }
+
+    #[Route('/booking/{id}', name:'app_booking_show')]
+    public function show(Booking $booking) {
+
+        return $this->render('booking/show.html.twig', [
+            'booking' => $booking
+        ]);
+
+    }
+
 }

@@ -33,7 +33,8 @@ class HomeController extends AbstractController
         return $this->render('home/home.html.twig', [
             'controller_name' => 'HomeController',
             'articles' => $articles,
-            'img' => $img
+            'img' => $img,
+            'user' => $this->getUser()
         ]);
 
     }

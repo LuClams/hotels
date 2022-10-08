@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -37,6 +39,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'booker', targetEntity: Booking::class, cascade: ['persist', 'remove'])]
     private $bookings;
+
+    #[ORM\ManyToMany(targetEntity: Room::class, mappedBy: 'booker')]
+    private Collection $bookedrooms;
+
+    public function __construct()
+    {
+        $this->bookedrooms = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -164,5 +174,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->email;
+    }
+
+    /**
+     * @return Collection<int, Room>
+     */
+    public function getBookedrooms(): Collection
+    {
+        return $this->bookedrooms;
+    }
+
+    public function addBookedroom(Room $bookedroom): self
+    {
+        if (!$this->bookedrooms->contains($bookedroom)) {
+            $this->bookedrooms->add($bookedroom);
+            $bookedroom->addBooker($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookedroom(Room $bookedroom): self
+    {
+        if ($this->bookedrooms->removeElement($bookedroom)) {
+            $bookedroom->removeBooker($this);
+        }
+
+        return $this;
     }
 }

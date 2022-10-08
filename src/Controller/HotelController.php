@@ -78,7 +78,7 @@ class HotelController extends AbstractController
          //dump($room->getTitle());
          //return new Response('<body></body>')
 
-       // return $this->render('hotel/index.html.twig', [
+       // return $this->render('hotel/inde.html.twig', [
        //       'controller_name' => 'HotelController',
        //       'hostel' => $hostel
        //   ]);

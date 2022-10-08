@@ -1,0 +1,58 @@
+{% extends 'headers/header.html.twig' %}
+
+{% block title %}Réservation n° {{ booking.id }}{% endblock %}
+
+{% block main %}
+    {% set room = booking.room %}
+
+    <div class="container">
+        <h1>Votre réservation n° {{ booking.id }}</h1>
+
+        {% if app.request.query.get('withSuccess') %}
+            <div class="alert alert-success">
+                <h4 class="alert-heading">
+                    Bravo !
+                </h4>
+                <p>Votre réservation pour <strong>{{ room.title }} </strong> à bien été prise en compte !</p>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2>Détails:</h2>
+                    <dl class="row">
+                        <dt class="col-md-4">Numéro :</dt>
+                        <dd class="col-md-8">{{ booking.id }}</dd>
+                        <dt class="col-md-4">Date d'arrivée:</dt>
+                        <dd class="col-md-8">{{ booking.startDate | date('d/m/Y') }}</dd>
+                        <dt class="col-md-4">Date de départ :</dt>
+                        <dd class="col-md-8">{{ booking.endDate | date('d/m/Y')}}</dd>
+                        <dt class="col-md-4">Nombre de nuits :</dt>
+                        <dd class="col-md-8">{{ booking.duration }}</dd>
+                        <dt class="col-md-4">Montant total :</dt>
+                        <dd class="col-md-8">{{ booking.amount }} &euro;</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2 class="alert-heading"> Votre hébergement</h2>
+
+                    <h4>
+                        <a href="{{ path('app_rooms_show', {'title': room.title}) }}">{{ room.title }}</a>
+                    </h4>
+
+                    <img src="{{ vich_uploader_asset(room, 'imageFile') }}" alt="Image de {{ room.title }}" class="img-fluid">
+
+                    {{ room.description | raw }}
+
+                    <a href="{{ path('app_rooms_show', {'title': room.title}) }}" class="btn btn-primary">Plus d'informations</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
