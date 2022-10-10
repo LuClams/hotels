@@ -25,6 +25,7 @@
                 <div class="col">
                     {{ form_row(form.endDate) }}
                 </div>
+                {{ form_row(form._token) }}
             </div>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <button type="submit" class="btn btn-primary">Valider</button>
@@ -37,12 +38,10 @@
                 </button>
             {% endif %}
 
+
+            <h4>Montant du séjour: <span id="amount">...</span> &euro; </h4>
+            <span id="days">...</span> nuit(s) à {{ room.price /100 }} / nuit
         </div>
-        {{ form_end(form) }}
-
-        <h4>Montant du séjour: <span id="amount">...</span> &euro; </h4>
-        <span id="days">0</span> nuit(s) à {{ room.price /100 }} / nuit
-
     </div>
 
     <div style="max-width: 90%" class="d-flex justify-content-center">
@@ -121,7 +120,7 @@
                         startDate:new Date()
                     });
 
-                    $('#booking_form_startDate, #booking_form_endDate').on('change', calculateAmount);
+                    $('#booking_form_startDate, #booking_form_endDate').on('change',calculateAmount);
                 });
 
                 function calculateAmount() {
@@ -129,20 +128,17 @@
                     // 18/09/2022
                     // (\/d+)\/(\d+)\/(\d{4})
                     // 2022-09-18
-                    const startDate = new Date(
-                        $('#booking_form_startDate')
-                            .val()
-                            .replace(/(\/d+)\/(\d+)\/(\d{4})/, '$3-$2-$1')
-                    );
+                    const startDate = new Date($('#booking_form_startDate').val().replace(/(\/d+)\/(\d+)\/(\d{4})/, '$3-$2-$1'));
 
                     if(startDate && endDate && startDate < endDate) {
-                        const DAY_TIME = 24 * 60 * 60 * 1000;
+                        const DAY_TIME = 24 * 3600 * 1000;
                         const interval = endDate.getTime() - startDate.getTime();
                         const days = interval / DAY_TIME;
-                        const amount = days * {{ room.price / 100 }};
+                        const amount = days * {{ room.price }};
+
 
                         $('#days').text(days);
-                        $('#amount').text(amount.toLocaleString('fr-FR'));
+                        $('#amount').text(amount.toLocaleString('fr_FR'));
                     }
 
                 }

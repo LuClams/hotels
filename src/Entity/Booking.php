@@ -40,18 +40,6 @@ class Booking
     private $room;
 
 
-    /**
-     * Callback appelé à chaque fois qu'on crée une réservation
-     *
-     * @ORM\PrePersist()
-     */
-    public function prePersist() {
-        if(empty($this->amount)) {
-            //prix de l'annonce * nbre de jours
-            $this->amount = $this->room->getPrice() * $this->getDuration();
-;        }
-    }
-
     public function isBookableDates() {
 
         // Il faut connaitre les dates qui soont impossibles pour la Suite
@@ -96,6 +84,17 @@ class Booking
         return $days;
     }
 
+    /**
+     * Callback appelé à chaque fois qu'on crée une réservation
+     *
+     * @ORM\PrePersist()
+     */
+    public function prePersist() {
+        if(empty($this->amount)) {
+            //prix de l'annonce * nbre de jours
+            $this->amount = $this->room->getPrice() * $this->getDuration();
+        }
+    }
     public function getDuration() {
         $diff = $this->endDate->diff($this->startDate);
         return $diff->days;

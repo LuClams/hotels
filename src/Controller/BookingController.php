@@ -29,7 +29,8 @@ class BookingController extends AbstractController
 
 
             $bookings->setBooker($user)
-                     ->setRoom($room);
+                     ->setRoom($room)
+                     ->setAmount($bookings->getRoom()->getPrice() * $bookings->getDuration());
             // Si les dates ne sont pas disponibles , message d'erreur
             if(!$bookings->isBookableDates()) {
                 $this->addFlash(
