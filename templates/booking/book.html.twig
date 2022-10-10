@@ -127,7 +127,7 @@
 
                     var d1 = $('#booking_form_startDate').datepicker('getDate');
                     var d2 = $('#booking_form_endDate').datepicker('getDate');
-                    var diff = (d2.getTime() - d1.getTime()) / (24 * 60 * 60 * 1000);
+                    var diff = Math.round((d2.getTime() - d1.getTime()) / (24 * 60 * 60 * 1000));
                     $('#days').text(diff);
 
                     var amount = parseFloat(diff) * {{ room.price / 100 }};
