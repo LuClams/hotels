@@ -40,7 +40,7 @@
 
 
             <h4>Montant du séjour: <span id="amount">...</span> &euro; </h4>
-            <span id="days">...</span> nuit(s) à {{ room.price /100 }} / nuit
+            <span id="days">...</span> nuit(s) à {{ room.price /100 }} &euro;/ nuit
         </div>
     </div>
 
@@ -124,23 +124,31 @@
                 });
 
                 function calculateAmount() {
-                    const endDate = new Date($('#booking_form_endDate').val().replace(/(\/d+)\/(\d+)\/(\d{4})/, '$3-$2-$1'));
-                    // 18/09/2022
-                    // (\/d+)\/(\d+)\/(\d{4})
-                    // 2022-09-18
-                    const startDate = new Date($('#booking_form_startDate').val().replace(/(\/d+)\/(\d+)\/(\d{4})/, '$3-$2-$1'));
 
-                    if(startDate && endDate && startDate < endDate) {
-                        const DAY_TIME = 24 * 3600 * 1000;
-                        const interval = endDate.getTime() - startDate.getTime();
-                        const days = interval / DAY_TIME;
-                        const amount = days * {{ room.price }};
+                    var d1 = $('#booking_form_startDate').datepicker('getDate');
+                    var d2 = $('#booking_form_endDate').datepicker('getDate');
+                    var diff = (d2.getTime() - d1.getTime()) / (24 * 60 * 60 * 1000);
+                    $('#days').text(diff);
 
-
-                        $('#days').text(days);
-                        $('#amount').text(amount.toLocaleString('fr_FR'));
-                    }
+                    var amount = parseFloat(diff) * {{ room.price / 100 }};
+                    $('#amount').text(amount);
 
                 }
+
+        //        const endDate = new Date($('#booking_form_endDate').val().replace(/(\/d+)\/(\d+)\/(\d{4})/, '$3-$2-$1'));
+        //        // 18/09/2022
+        //        // (\/d+)\/(\d+)\/(\d{4})
+        //        // 2022-09-18
+        //        const startDate = new Date($('#booking_form_startDate').val().replace(/(\/d+)\/(\d+)\/(\d{4})/, '$3-$2-$1'));
+
+        //        if(startDate && endDate && startDate < endDate) {
+        //            const DAY_TIME = 24 * 3600 * 1000;
+        //            const interval = endDate.getTime() - startDate.getTime();
+        //            const days = interval / DAY_TIME;
+        //            const amount = days * {#{{ room.price }};
+        //
+        //            $('#days').text(days);
+        //            $('#amount').text(amount.toLocaleString('fr_FR'));
+        //        #}
             </script>
         {% endblock %}
