@@ -4,6 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Entity\Booking;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class BookingCrudController extends AbstractCrudController
 {
@@ -12,14 +18,17 @@ class BookingCrudController extends AbstractCrudController
         return Booking::class;
     }
 
-    /*
+
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            AssociationField::new('room'),
+            DateField::new('startDate'),
+            DateField::new('endDate'),
+            MoneyField::new('amount')->setCurrency('EUR'),
+            AssociationField::new('booker')
         ];
     }
-    */
+
 }

@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -39,7 +40,8 @@ class RoomCrudController extends AbstractCrudController
             MoneyField::new('price') ->setCurrency('EUR')->setNumDecimals(0),
             //AssociationField::new('booking'),
             AssociationField::new('hostel'),
-            AssociationField::new('supervisor')
+            AssociationField::new('supervisor'),
+            NumberField::new('countrooms')
         ];
     }
 
