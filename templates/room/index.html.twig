@@ -6,30 +6,67 @@
     <div class="container">
         <h1 class="my-3">Voici nos Suites</h1>
 
-        <div class="row">
-            {%for room in rooms %}
-                {% set url = path('app_rooms_show', {'title':room.title}) %}
-                <div class="col-md-4">
-                    <div class="card bg-light mb-3">
-                        <div class="card-header text-center">
-                            <strong>{{ room.price / 100 }}&euro; / nuit</strong><br>
-                        </div>
-                        <a href="{{ url }}"></a>
-                        <img src="{{ vich_uploader_asset(room, 'imageFile') }}" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block;">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="{{ url }}">{{ room.title }}</a>
-                            </h4>
-                            <h5>Hotel : {{ room.hostel }}</h5>
+        <input type="text"
+               id="myInput"
+               onkeyup="myFunction()"
+               placeholder="Chercher une suite.."
+               title="Type in a name"
+               style="  background-position: 10px 12px;
+                        background-repeat: no-repeat;
+                        width: 40%;
+                        font-size: 16px;
+                        padding: 12px 20px 12px 40px;
+                        border: 1px solid #ddd;
+                        margin-top: 5px;
+                        margin-bottom: 12px;"
+        >
+        <div class="m-3 justify-content-center justify-content-around" id="myList">
+            <div class="row" >
+                {%for room in rooms %}
+                    {% set url = path('app_rooms_show', {'title':room.title}) %}
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header text-center">
+                                <strong>{{ room.price / 100 }}&euro; / nuit</strong><br>
+                            </div>
+                            <a href="{{ url }}"></a>
+                            <img src="{{ vich_uploader_asset(room, 'imageFile') }}" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block;">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="{{ url }}">{{ room.title }}</a>
+                                </h4>
+                                <h5>Hotel : {{ room.hostel }}</h5>
 
-                            <p class="card-text">
-                                {{ room.description }}
-                            </p>
-                            <a href="{{ url }}" class="btn btn-secondary">En savoir plus</a>
+                                <p class="card-text">
+                                    {{ room.description }}
+                                </p>
+                                <a href="{{ url }}" class="btn btn-secondary">En savoir plus</a>
+                            </div>
                         </div>
                     </div>
-                </div>{% endfor %}
+                {% endfor %}
             </div>
+        </div>
+    </div>
 
     </div>
+{% block javascripts %}
+    <script>
+        function myFunction() {
+            var input, filter, ul, li, h, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myList");
+            li = ul.getElementsByClassName("col-md-4");
+            for (i = 0; i < li.length; i++) {
+                h = li[i].getElementsByTagName("h4")[0];
+                txtValue = h.textContent || h.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>{% endblock %}
 {% endblock %}

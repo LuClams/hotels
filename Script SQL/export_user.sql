@@ -1,8 +1,8 @@
 /*
--- Query: select*from user
+-- Query: select * from user
 LIMIT 0, 1000
 
--- Date: 2022-09-15 23:11
+-- Date: 2022-10-31 12:26
 */
 INSERT INTO `` (`id`,`email`,`roles`,`password`,`firstname`,`lastname`,`is_verified`) VALUES (1,'carl@example.com','[]','$2y$13$TVapYVN3euWajIsg.Fguredmgyi4mHT.guYwQmObxrMgKbA1C7Bw6','Carl','Clams',0);
 INSERT INTO `` (`id`,`email`,`roles`,`password`,`firstname`,`lastname`,`is_verified`) VALUES (2,'Kassie@hostel.com','[\"ROLE_SUPERVISOR\"]','$2y$13$zg1Su9BJ8dH5bTjoQsbVbu9BN68Dv33mK6GrP2kL2BcEMfpjHyUCS','Kassie','Sterre',0);
@@ -16,3 +16,4 @@ INSERT INTO `` (`id`,`email`,`roles`,`password`,`firstname`,`lastname`,`is_verif
 INSERT INTO `` (`id`,`email`,`roles`,`password`,`firstname`,`lastname`,`is_verified`) VALUES (10,'lucy@example.com','[]','$2y$13$LYTnNIucy2DTDnIAfUNndewdd3O6XHz1Kq9lF4YC4p/1K0tp1fFrq','Lucy','Odenisk',0);
 INSERT INTO `` (`id`,`email`,`roles`,`password`,`firstname`,`lastname`,`is_verified`) VALUES (11,'gilbert@example.com','[]','$2y$13$3sRTwccQT14lF9l0BgpOo.7gUJpqi9I87xi.8I8uneeWHVg/tjJ5u','Gilbert','Clams',0);
 INSERT INTO `` (`id`,`email`,`roles`,`password`,`firstname`,`lastname`,`is_verified`) VALUES (12,'cecile@example.com','[]','$2y$13$75ErBJ1.uZ1Dzn49awZtRuONI.AlK5L6VD4N/AWt5bW081mriOm3u','Cecile','Calais',0);
+INSERT INTO `` (`id`,`email`,`roles`,`password`,`firstname`,`lastname`,`is_verified`) VALUES (13,'serge@example.com','[]','$2y$13$FIq.RbCl8hH./LYAOZ9JLemxBMKjyDedJqkBdyc6WA1KDlKIyCQnO','Serge','Atoma',0);
