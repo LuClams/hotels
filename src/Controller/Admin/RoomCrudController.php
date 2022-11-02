@@ -3,19 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Room;
+use App\Form\SlideimageType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Symfony\Component\DomCrawler\Field\FileFormField;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Vich\UploaderBundle\Form\Type\VichFileType;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 
 class RoomCrudController extends AbstractCrudController
 {
@@ -24,6 +21,14 @@ class RoomCrudController extends AbstractCrudController
         return Room::class;
     }
 
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+          //  ->add('title')
+            ->add(EntityFilter::new('supervisor'))
+
+            ;
+    }
 
     public function configureFields(string $pageName): iterable
     {
@@ -38,10 +43,11 @@ class RoomCrudController extends AbstractCrudController
                 ->setRequired(false),
             TextareaField::new('description')->stripTags(),
             MoneyField::new('price') ->setCurrency('EUR')->setNumDecimals(0),
-            //AssociationField::new('booking'),
+            AssociationField::new('bookings'),
             AssociationField::new('hostel'),
             AssociationField::new('supervisor'),
-            NumberField::new('countrooms')
+         //   NumberField::new('countrooms'),
+            CollectionField::new('slideimages')->setEntryType(SlideimageType::class)
         ];
     }
 

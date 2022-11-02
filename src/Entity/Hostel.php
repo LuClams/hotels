@@ -33,9 +33,13 @@ class Hostel
     #[ORM\OneToOne(mappedBy: 'hostel', targetEntity: Supervisor::class, cascade: ['persist', 'remove'])]
     private $supervisor;
 
+    #[ORM\OneToMany(mappedBy: 'hostel', targetEntity: Slideimage::class, cascade: ['persist', 'remove'])]
+    private Collection $slideimages;
+
     public function __construct()
     {
         $this->room = new ArrayCollection();
+        $this->slideimages = new ArrayCollection();
     }
 
 
@@ -142,5 +146,35 @@ class Hostel
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Slideimage>
+     */
+    public function getSlideimages(): Collection
+    {
+        return $this->slideimages;
+    }
+
+    public function addSlideimage(Slideimage $slideimage): self
+    {
+        if (!$this->slideimages->contains($slideimage)) {
+            $this->slideimages->add($slideimage);
+            $slideimage->setHostel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSlideimage(Slideimage $slideimage): self
+    {
+        if ($this->slideimages->removeElement($slideimage)) {
+            // set the owning side to null (unless already changed)
+            if ($slideimage->getHostel() === $this) {
+                $slideimage->setHostel(null);
+            }
+        }
+
+        return $this;
     }
 }

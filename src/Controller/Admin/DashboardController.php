@@ -6,6 +6,7 @@ use App\Entity\Booking;
 use App\Entity\Contact;
 use App\Entity\Hostel;
 use App\Entity\Room;
+use App\Entity\Slideimage;
 use App\Entity\Supervisor;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -57,11 +58,46 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Contact Form', 'fa fa-user', Contact::class);
 
         yield MenuItem::section('Users');
-        yield MenuItem::linkToCrud('Users', 'fa fa-comment', User::class);
-        yield MenuItem::linkToCrud('Bookings', 'fa fa-user', Booking::class);
+            yield MenuItem::linkToCrud('Users', 'fa fa-comment', User::class)
+                ->setPermission('ROLE_ADMIN');
+            yield MenuItem::linkToCrud('Bookings', 'fa fa-user', Booking::class);
 
         yield MenuItem::section('Hostel Group');
-        yield MenuItem::linkToCrud('Hostels', 'fa fa-comment', Hostel::class);
+        yield MenuItem::linkToCrud('Hostels', 'fa fa-comment', Hostel::class)
+            ->setPermission('ROLE_ADMIN');
+        yield MenuItem::subMenu('Mon Hotel', 'fa fa-article')->setSubItems([
+            MenuItem::linkToCrud('Westeen', 'fa fa-tags', Hostel::class)
+                ->setAction('detail')
+                ->setEntityId(1)
+                ->setPermission('ROLE_SUPERVISOR_WESTEEN'),
+            MenuItem::linkToCrud('Hyatt', 'fa fa-file-text', Hostel::class)
+                ->setAction('detail')
+                ->setEntityId(2)
+                ->setPermission('ROLE_SUPERVISOR_HYATT'),
+            MenuItem::linkToCrud('Cap', 'fa fa-comment', Hostel::class)
+                ->setAction('detail')
+                ->setEntityId(3)
+                ->setPermission('ROLE_SUPERVISOR_CAP'),
+            MenuItem::linkToCrud('Ibis', 'fa fa-tags', Hostel::class)
+                ->setAction('detail')
+                ->setEntityId(4)
+                ->setPermission('ROLE_SUPERVISOR_IBIS'),
+            MenuItem::linkToCrud('Hotel-V', 'fa fa-file-text', Hostel::class)
+                ->setAction('detail')
+                ->setEntityId(5)
+                ->setPermission('ROLE_SUPERVISOR_HOTELV'),
+            MenuItem::linkToCrud('Jazzy', 'fa fa-comment', Hostel::class)
+                ->setAction('detail')
+                ->setEntityId(6)
+                ->setPermission('ROLE_SUPERVISOR_JAZZY'),
+            MenuItem::linkToCrud('Yadel', 'fa fa-comment', Hostel::class)
+                ->setAction('detail')
+                ->setEntityId(7)
+                ->setPermission('ROLE_SUPERVISOR_YADEL'),
+            ]);
+
         yield MenuItem::linkToCrud('Rooms', 'fa fa-comment', Room::class);
+        yield MenuItem::linkToCrud('images', 'fa fa-comment', Slideimage::class);
+
     }
 }

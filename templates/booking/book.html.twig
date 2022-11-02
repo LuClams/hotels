@@ -46,36 +46,22 @@
 
     <div style="max-width: 90%" class="d-flex justify-content-center">
 
-        <div id="carouselExampleIndicators" class="carousel slide carousel-dark" data-bs-ride="true">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                {#    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                #}</div>
+                {% for slideimage in room.slideimages %}
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active"{% endif %} aria-current="true" aria-label="Slide 1"></button>
+                {% endfor %}
+            </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ vich_uploader_asset(room, 'imageFile') }}"
-                         alt=""
-                         style="max-height: 500px;
-                                    max-width: 1000px;
-                                    margin: 10px">
-                </div>
-                {#  <div class="carousel-item">#}
-                {#  <img src="..." class="d-block w-100" alt="...">#}
-                {#  <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
-                             alt=""
-                             style="max-height: 500px;
-                                    max-width: 1000px;
-                                    margin: 10px">
+                {% for slideimage in room.slideimages %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <img src="{{ slideimage.url }}" class="d-block w-100" alt="{{ room.title }}">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ room.title }}</h5>
+                            <p>{{ slideimage.caption }}</p>
+                        </div>
                     </div>
-                    <div class="carousel-item">
-                        {#  <img src="..." class="d-block w-100" alt="...">#}
-                {# <img src="{{ vich_uploader_asset(roomDetails, 'imageFile') }}"
-                             alt=""
-                             style="max-height: 500px;
-                                    max-width: 1000px;
-                                    margin: 10px">
-                    </div>#}
+                {% endfor %}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

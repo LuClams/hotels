@@ -94,4 +94,5 @@ class Supervisor
     {
         return $this->user;
     }
+
 }

@@ -3,8 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Supervisor;
+use App\Form\RoomType;
+use App\Form\SlideimageType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 
 class SupervisorCrudController extends AbstractCrudController
 {
@@ -20,7 +23,7 @@ class SupervisorCrudController extends AbstractCrudController
             //IdField::new('id'),
             AssociationField::new('user', 'email'),
             AssociationField::new('hostel'),
-            AssociationField::new('room')
+            CollectionField::new('room')
         ];
     }
 

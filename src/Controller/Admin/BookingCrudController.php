@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Controller\Admin\Filter\DateCalendarFilter;
 use App\Entity\Booking;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -18,6 +20,13 @@ class BookingCrudController extends AbstractCrudController
         return Booking::class;
     }
 
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            // ...
+            ->add(DateCalendarFilter::new('startDate'))
+            ;
+    }
 
     public function configureFields(string $pageName): iterable
     {

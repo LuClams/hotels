@@ -32,7 +32,7 @@
                     <div class="carousel-inner">
                         {% for slideimage in room.slideimages %}
                             <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                <img src="{{ slideimage.url }}" class="d-block w-100" alt="...">
+                                <img src="{{ slideimage.url }}" class="d-block w-100" alt="{{ room.title }}">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>{{ room.title }}</h5>
                                     <p>{{ slideimage.caption }}</p>

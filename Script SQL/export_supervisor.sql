@@ -1,8 +1,8 @@
-id,user_id,hostel_id
-1,3,1
-2,2,2
-4,4,3
-5,5,4
-6,6,5
-7,7,6
-8,8,7
+
+INSERT INTO `supervisor` (id,user_id,hostel_id) VALUES (1,3,1);
+INSERT INTO `supervisor` (id,user_id,hostel_id) VALUES (2,2,2);
+INSERT INTO `supervisor` (id,user_id,hostel_id) VALUES (4,4,3);
+INSERT INTO `supervisor` (id,user_id,hostel_id) VALUES (5,5,4);
+INSERT INTO `supervisor` (id,user_id,hostel_id) VALUES (6,6,5);
+INSERT INTO `supervisor` (id,user_id,hostel_id) VALUES (7,7,6);
+INSERT INTO `supervisor` (id,user_id,hostel_id) VALUES (8,8,7)

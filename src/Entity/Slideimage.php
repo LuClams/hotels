@@ -4,8 +4,12 @@ namespace App\Entity;
 
 use App\Repository\SlideimageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Entity\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
 
 #[ORM\Entity(repositoryClass: SlideimageRepository::class)]
+
 class Slideimage
 {
     #[ORM\Id]
@@ -13,7 +17,8 @@ class Slideimage
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+
+  #[ORM\Column(length: 255)]
     private ?string $url = null;
 
     #[ORM\Column(length: 255)]
@@ -22,6 +27,21 @@ class Slideimage
     #[ORM\ManyToOne(inversedBy: 'slideimages')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Room $room = null;
+
+    #[ORM\ManyToOne(targetEntity: Hostel::class, inversedBy: 'slideimages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $hostel = null;
+
+
+    public function getHostel()
+    {
+        return $this->hostel;
+    }
+
+    public function setHostel($hostel): void
+    {
+        $this->hostel = $hostel;
+    }
 
     public function getId(): ?int
     {
@@ -63,4 +83,10 @@ class Slideimage
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->room;
+    }
+
 }

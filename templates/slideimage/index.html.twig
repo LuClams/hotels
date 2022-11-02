@@ -1,0 +1,26 @@
+{% extends 'headers/header.html.twig' %}
+
+{% block tag_title %} Images {% endblock %}
+{% block title %}Ajouter une image | {{ parent() }}{% endblock %}
+
+
+{% block main %}
+    <main>
+        <div class="container">
+            <h1 class="h3 mb-3 font-weight-normal">Ajouter une image</h1>
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            {{ form_start(form) }}
+            {{ form_row(form.url,{ 'label': 'Votre nom' }) }}
+            {{ form_row(form.caption, { 'label': 'Votre email' }) }}
+            {{ form_row(form.room, { 'label': 'Objet du message' }) }}
+            <button class="btn btn-primary" type="submit">Envoyer</button>
+            {{ form_end(form) }}
+        </div>
+    </main>
+{% endblock %}

@@ -59,7 +59,7 @@ class Room
     #[ORM\Column]
     private ?int $countrooms = null;
 
-    #[ORM\OneToMany(mappedBy: 'room', targetEntity: Slideimage::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'room', targetEntity: Slideimage::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $slideimages;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'bookedrooms')]
@@ -240,7 +240,7 @@ class Room
     }
 
     /**
-     * @return Collection<int, Slideimage>
+     * @return Collection< Slideimage>
      */
     public function getSlideimages(): Collection
     {
