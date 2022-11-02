@@ -42,7 +42,7 @@ class RoomCrudController extends AbstractCrudController
                 ->setUploadedFileNamePattern('[slug].[extension]')
                 ->setRequired(false),
             TextareaField::new('description')->stripTags(),
-            MoneyField::new('price') ->setCurrency('EUR')->setNumDecimals(0),
+            MoneyField::new('price') ->setCurrency('EUR'),
             AssociationField::new('bookings'),
             AssociationField::new('hostel'),
             AssociationField::new('supervisor'),

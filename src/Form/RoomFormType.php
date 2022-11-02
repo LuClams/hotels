@@ -7,6 +7,7 @@ use App\Entity\Slideimage;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -21,6 +22,7 @@ class RoomFormType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('image', TextType::class)
+            ->add('imageFile', FileType::class)
             ->add('description', TextareaType::class)
             ->add('price', MoneyType::class)
         //    ->add('countrooms', NumberType::class)
@@ -29,7 +31,8 @@ class RoomFormType extends AbstractType
            // ->add('booker')
             ->add('slideimages', EntityType::class, [
              // looks for choices from this entity
-             'class' => Slideimage::class])
+             'class' => Slideimage::class,
+             'multiple' => true])
         ;
     }
 

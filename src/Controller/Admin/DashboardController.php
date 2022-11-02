@@ -9,6 +9,7 @@ use App\Entity\Room;
 use App\Entity\Slideimage;
 use App\Entity\Supervisor;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -54,7 +55,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
         yield MenuItem::section('Management');
-        yield MenuItem::linkToCrud('Managers', 'fa fa-file-text', Supervisor::class);
+        yield MenuItem::linkToCrud('Managers', 'fa fa-file-text', Supervisor::class)
+            ->setPermission('ROLE_ADMIN');
         yield MenuItem::linkToCrud('Contact Form', 'fa fa-user', Contact::class);
 
         yield MenuItem::section('Users');
@@ -96,8 +98,10 @@ class DashboardController extends AbstractDashboardController
                 ->setPermission('ROLE_SUPERVISOR_YADEL'),
             ]);
 
-        yield MenuItem::linkToCrud('Rooms', 'fa fa-comment', Room::class);
-        yield MenuItem::linkToCrud('images', 'fa fa-comment', Slideimage::class);
+        yield MenuItem::linkToCrud('Rooms', 'fa fa-comment', Room::class)
+            ->setPermission('ROLE_ADMIN');
+        yield MenuItem::linkToCrud('images', 'fa fa-comment', Slideimage::class)
+            ->setPermission('ROLE_ADMIN');
 
     }
 }

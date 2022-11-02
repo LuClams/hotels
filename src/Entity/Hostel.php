@@ -33,13 +33,14 @@ class Hostel
     #[ORM\OneToOne(mappedBy: 'hostel', targetEntity: Supervisor::class, cascade: ['persist', 'remove'])]
     private $supervisor;
 
-    #[ORM\OneToMany(mappedBy: 'hostel', targetEntity: Slideimage::class, cascade: ['persist', 'remove'])]
-    private Collection $slideimages;
+    #[ORM\OneToMany(mappedBy: 'tohostel', targetEntity: Slideimage::class)]
+    private Collection $slidesroom;
+
 
     public function __construct()
     {
         $this->room = new ArrayCollection();
-        $this->slideimages = new ArrayCollection();
+        $this->slidesroom = new ArrayCollection();
     }
 
 
@@ -143,6 +144,7 @@ class Hostel
         return $this;
     }
 
+
     public function __toString(): string
     {
         return $this->name;
@@ -151,27 +153,27 @@ class Hostel
     /**
      * @return Collection<int, Slideimage>
      */
-    public function getSlideimages(): Collection
+    public function getSlidesroom(): Collection
     {
-        return $this->slideimages;
+        return $this->slidesroom;
     }
 
-    public function addSlideimage(Slideimage $slideimage): self
+    public function addSlidesroom(Slideimage $slidesroom): self
     {
-        if (!$this->slideimages->contains($slideimage)) {
-            $this->slideimages->add($slideimage);
-            $slideimage->setHostel($this);
+        if (!$this->slidesroom->contains($slidesroom)) {
+            $this->slidesroom->add($slidesroom);
+            $slidesroom->setTohostel($this);
         }
 
         return $this;
     }
 
-    public function removeSlideimage(Slideimage $slideimage): self
+    public function removeSlidesroom(Slideimage $slidesroom): self
     {
-        if ($this->slideimages->removeElement($slideimage)) {
+        if ($this->slidesroom->removeElement($slidesroom)) {
             // set the owning side to null (unless already changed)
-            if ($slideimage->getHostel() === $this) {
-                $slideimage->setHostel(null);
+            if ($slidesroom->getTohostel() === $this) {
+                $slidesroom->setTohostel(null);
             }
         }
 

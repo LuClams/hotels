@@ -40,7 +40,7 @@
 
 
             <h4>Montant du séjour: <span id="amount">...</span> &euro; </h4>
-            <span id="days">...</span> nuit(s) à {{ room.price /100 }} &euro;/ nuit
+            <span id="days">...</span> nuit(s) à {{ room.price }} &euro;/ nuit
         </div>
     </div>
 
@@ -116,7 +116,7 @@
                     var diff = Math.round((d2.getTime() - d1.getTime()) / (24 * 60 * 60 * 1000));
                     $('#days').text(diff);
 
-                    var amount = parseFloat(diff) * {{ room.price / 100 }};
+                    var amount = parseFloat(diff) * {{ room.price }};
                     $('#amount').text(amount);
 
                 }

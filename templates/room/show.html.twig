@@ -11,7 +11,7 @@
             <h2>Hotel - {{ room.hostel }}</h2>
             <p>{{ room.description }}</p>
             <p class="h2">
-                <strong>{{ room.price / 100}}&euro;</strong> par nuit
+                <strong>{{ room.price}}&euro;</strong> par nuit
             </p>
             <a href="{{ path('app_booking_create', {'title': room.title}) }}" class="btn btn-primary"> Réserver ! </a>
         </div>

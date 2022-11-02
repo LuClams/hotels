@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Booking;
 use App\Entity\Room;
 use App\Form\BookingFormType;
+use App\Form\RoomFormType;
 use App\Repository\RoomRepository;
 use App\Repository\SlideimageRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,25 +42,22 @@ class RoomController extends AbstractController
 
     }
 
-    #[Route('/rooms/create', name: 'app_room_create')]
-    public function inde(Room $room, Request $request, EntityManagerInterface $entityManager)
+    #[Route('/create', name: 'app_room_create')]
+    public function inde(Request $request, EntityManagerInterface $entityManager)
     {
         $newroom = new Room();
 
-        $form = $this->createForm(BookingFormType::class, $newroom);
+        $form = $this->createForm(RoomFormType::class, $newroom);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$bookings->createdAt(new \DateTime());
             $user = $this->getUser();
-
-
             $newroom->setSupervisor($user);
 
-
-                $entityManager->persist($newroom);
-                $entityManager->flush();
+            $entityManager->persist($newroom);
+            $entityManager->flush();
 
         }
         return $this->render('room/create.html.twig', [

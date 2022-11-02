@@ -13,7 +13,7 @@
                 <h4 class="alert-heading">
                     Bravo !
                 </h4>
-                <p>Votre réservation pour <strong>{{ room.title }} </strong> à bien été prise en compte !</p>
+                <p>Votre réservation pour la Suite <strong>{{ room.title }} </strong> à bien été prise en compte !</p>
             </div>
         {% endif %}
 
@@ -31,7 +31,7 @@
                         <dt class="col-md-4">Nombre de nuits :</dt>
                         <dd class="col-md-8">{{ booking.duration }}</dd>
                         <dt class="col-md-4">Montant total :</dt>
-                        <dd class="col-md-8">{{ booking.amount / 100 }} &euro;</dd>
+                        <dd class="col-md-8">{{ booking.amount }} &euro;</dd>
                     </dl>
                 </div>
             </div>

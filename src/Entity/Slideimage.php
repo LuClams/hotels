@@ -28,20 +28,10 @@ class Slideimage
     #[ORM\JoinColumn(nullable: false)]
     private ?Room $room = null;
 
-    #[ORM\ManyToOne(targetEntity: Hostel::class, inversedBy: 'slideimages')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $hostel = null;
+    #[ORM\ManyToOne(inversedBy: 'slidesroom')]
+    private ?Hostel $tohostel = null;
 
 
-    public function getHostel()
-    {
-        return $this->hostel;
-    }
-
-    public function setHostel($hostel): void
-    {
-        $this->hostel = $hostel;
-    }
 
     public function getId(): ?int
     {
@@ -72,6 +62,7 @@ class Slideimage
         return $this;
     }
 
+
     public function getRoom(): ?Room
     {
         return $this->room;
@@ -87,6 +78,18 @@ class Slideimage
     public function __toString(): string
     {
         return $this->room;
+    }
+
+    public function getTohostel(): ?Hostel
+    {
+        return $this->tohostel;
+    }
+
+    public function setTohostel(?Hostel $tohostel): self
+    {
+        $this->tohostel = $tohostel;
+
+        return $this;
     }
 
 }

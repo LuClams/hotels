@@ -1,0 +1,20 @@
+{% extends 'headers/header.html.twig' %}
+{% block tag_title %} Réserver la Suite:  {% endblock %}
+{% block title %} Réserver la Suite {% endblock %}
+   {% block main %}
+       <main>
+           {{ form_start(form) }}
+           <div class="alert alert-light">
+               <div class="row">
+                   <div class="col">
+                       {{ form_row(form.startDate) }}
+                   </div>
+                   <div class="col">
+                       {{ form_row(form.endDate) }}
+                   </div>
+                   {{ form_row(form._token) }}
+               </div>
+           </div>
+       </main>
+
+{% endblock %}
