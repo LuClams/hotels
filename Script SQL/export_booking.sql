@@ -2,8 +2,9 @@
 -- Query: select * from booking
 LIMIT 0, 1000
 
--- Date: 2022-10-31 12:34
+-- Date: 2022-11-02 22:54
 */
+use hotels_ls;
 INSERT INTO `booking` (`id`,`booker_id`,`room_id`,`start_date`,`end_date`,`amount`) VALUES (25,1,5,'2022-10-10 00:00:00','2022-10-16 00:00:00',678);
 INSERT INTO `booking` (`id`,`booker_id`,`room_id`,`start_date`,`end_date`,`amount`) VALUES (26,1,5,'2022-10-17 00:00:00','2022-10-21 00:00:00',678);
 INSERT INTO `booking` (`id`,`booker_id`,`room_id`,`start_date`,`end_date`,`amount`) VALUES (27,11,6,'2022-10-10 00:00:00','2022-10-16 00:00:00',678);
@@ -34,3 +35,6 @@ INSERT INTO `booking` (`id`,`booker_id`,`room_id`,`start_date`,`end_date`,`amoun
 INSERT INTO `booking` (`id`,`booker_id`,`room_id`,`start_date`,`end_date`,`amount`) VALUES (52,9,3,'2022-11-17 20:57:18','2022-11-19 20:57:18',135600);
 INSERT INTO `booking` (`id`,`booker_id`,`room_id`,`start_date`,`end_date`,`amount`) VALUES (53,9,11,'2022-10-25 21:01:04','2022-10-31 21:01:04',406800);
 INSERT INTO `booking` (`id`,`booker_id`,`room_id`,`start_date`,`end_date`,`amount`) VALUES (54,9,1,'2022-11-12 21:06:56','2022-11-17 21:06:56',339000);
+INSERT INTO `booking` (`id`,`booker_id`,`room_id`,`start_date`,`end_date`,`amount`) VALUES (55,3,1,'2022-12-07 14:31:06','2022-12-11 14:31:06',2712);
+INSERT INTO `booking` (`id`,`booker_id`,`room_id`,`start_date`,`end_date`,`amount`) VALUES (56,3,8,'2022-12-19 14:33:32','2022-12-25 14:33:32',4068);
+INSERT INTO `booking` (`id`,`booker_id`,`room_id`,`start_date`,`end_date`,`amount`) VALUES (57,3,9,'2022-11-16 14:35:22','2022-11-19 14:35:22',2034);
