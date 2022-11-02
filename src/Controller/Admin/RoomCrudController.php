@@ -26,7 +26,6 @@ class RoomCrudController extends AbstractCrudController
         return $filters
           //  ->add('title')
             ->add(EntityFilter::new('supervisor'))
-
             ;
     }
 
