@@ -31,8 +31,9 @@ class HomeController extends AbstractController
 
         $img = 'https://cdn.pixabay.com/photo/2017/03/09/06/30/pool-2128578__480.jpg';
         return $this->render('home/home.html.twig', [
-            'controller_name' => 'HomeController',
-            'articles' => $articles,
+            'article1' => $articles[1],
+            'article2' => $articles[2],
+            'article3' => $articles[3],
             'img' => $img,
             'user' => $this->getUser()
         ]);

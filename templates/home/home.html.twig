@@ -19,22 +19,50 @@
             <p><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non purus ac tortor accumsan malesuada vel vitae augue. Suspendisse lobortis elit a ante facilisis dapibus. Praesent odio leo, finibus at posuere sit amet, varius sit amet ex. Curabitur ultricies at ipsum ac sodales. Nunc aliquam, lorem eu aliquam laoreet, enim purus placerat magna, eu semper urna eros quis orci. Nunc sed nisi id ipsum pharetra bibendum.</b></p>
         </div>
 
-        {% for article in articles %}
-            <div class="card mb-3 d-flex justify-content-center"style="max-width:800px">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="{{ article.image }}" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ article.title }}</h5>
-                            <p class="card-text">{{ article.content }}</p>
 
-                        </div>
+        <div class="card mb-3 d-flex justify-content-center" style="max-width:1000px">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ article1.image }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article1.title }}</h5>
+                        <p class="card-text">{{ article1.content }}</p>
+
                     </div>
                 </div>
             </div>
-        {% endfor %}
+        </div>
+
+        <div class="card mb-3 d-flex justify-content-center justify-content-end" style="max-width:1000px">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article2.title }}</h5>
+                        <p class="card-text">{{ article2.content }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ article2.image }}" class="img-fluid rounded-start" alt="...">
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3 d-flex justify-content-center" style="max-width:1000px">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ article3.image }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article3.title }}</h5>
+                        <p class="card-text">{{ article3.content }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row mb-2 justify-content-center">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/aQIaW7fBYxw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
