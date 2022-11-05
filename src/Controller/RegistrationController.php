@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use SendGrid\Mail\Mail;
 
 class RegistrationController extends AbstractController
 {
@@ -53,6 +55,27 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
+
+// Uncomment next line if you're not using a dependency loader (such as Composer)
+// require_once '<PATH TO>/sendgrid-php.php';
+
+            $email = new Mail();
+            $email->setFrom("lunelclamytj@outlook.fr", "Example User");
+            $email->setSubject("Sending with Twilio SendGrid is Fun");
+            $email->addTo("test@example.com", "Example User");
+            $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+            $email->addContent(
+                "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
+            );
+            $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+            try {
+                $response = $sendgrid->send($email);
+                print $response->statusCode() . "\n";
+                print_r($response->headers());
+                print $response->body() . "\n";
+            } catch (Exception $e) {
+                echo 'Caught exception: ' . $e->getMessage() . "\n";
+            }
 
             return $this->redirectToRoute('app_home');
         }
