@@ -33,7 +33,7 @@ class Hostel
     #[ORM\OneToOne(mappedBy: 'hostel', targetEntity: Supervisor::class, cascade: ['persist', 'remove'])]
     private $supervisor;
 
-    #[ORM\OneToMany(mappedBy: 'tohostel', targetEntity: Slideimage::class)]
+    #[ORM\OneToMany(mappedBy: 'tohostel', targetEntity: Slideimage::class, cascade: ['persist', 'remove'])]
     private Collection $slidesroom;
 
 

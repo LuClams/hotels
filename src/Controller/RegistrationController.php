@@ -11,6 +11,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,7 +29,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -48,34 +49,14 @@ class RegistrationController extends AbstractController
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
+                $email= (new TemplatedEmail())
                     ->from(new Address('lunelclamytj@outlook.fr', 'Hypnos'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
-
-// Uncomment next line if you're not using a dependency loader (such as Composer)
-// require_once '<PATH TO>/sendgrid-php.php';
-
-            $email = new Mail();
-            $email->setFrom("lunelclamytj@outlook.fr", "Example User");
-            $email->setSubject("Sending with Twilio SendGrid is Fun");
-            $email->addTo("test@example.com", "Example User");
-            $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
-            $email->addContent(
-                "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
-            );
-            $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-            try {
-                $response = $sendgrid->send($email);
-                print $response->statusCode() . "\n";
-                print_r($response->headers());
-                print $response->body() . "\n";
-            } catch (Exception $e) {
-                echo 'Caught exception: ' . $e->getMessage() . "\n";
-            }
+            $mailer ->send($email);
 
             return $this->redirectToRoute('app_home');
         }
@@ -102,6 +83,6 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('app_account');
     }
 }
