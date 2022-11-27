@@ -3,7 +3,7 @@ html, body {
     margin: 0;
 }
 /* Responsive layout - when the screen is less than 700px*/
-@media screen and (min-width: 320px) and (orientation: portrait) {
+@media screen and (min-width: 300px) {
     .navbar {
         flex-direction: column;
     }
@@ -21,25 +21,14 @@ html, body {
         width: 100%;
     }
     #footer-mobile {
-        position: unset;
         width: 100%;
         bottom: 0;
         background-color: #D0D0D0;
     }
 }
-@media screen and (min-width: 320px) and (orientation: landscape) {
-    #footer-mobile {
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-        background-color: #D0D0D0;
-    }
-}
-
-
 
 /* On screens that are 992px wide or less */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
 
     .navbar a {
         text-align: center;
@@ -53,9 +42,17 @@ html, body {
 
 }
 
-
-
 @media screen and (min-width: 900px) {
+    #footer-mobile {
+        position: unset;
+        width: 100%;
+        bottom: 0;
+        background-color: #D0D0D0;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
     main {
         background-color: whitesmoke;
         padding: 14px 20px;
