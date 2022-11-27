@@ -5,7 +5,7 @@
 {% block main %}
     <main>
 
-        <form method="post" id="login" style="width: 50%;">
+        <form method="post" id="login">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}

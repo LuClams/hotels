@@ -1,6 +1,9 @@
-
+html, body {
+    height: 100%;
+    margin: 0;
+}
 /* Responsive layout - when the screen is less than 700px*/
-@media screen and (max-width: 700px) {
+@media screen and (min-width: 425px) {
     .navbar {
         flex-direction: column;
     }
@@ -8,20 +11,25 @@
         width:80px;
         height:106px;
     }
-    p.footerp {
+    .footerp {
         display: none;
     }
     #myInput {
         min-width: 60%;
     }
     #login {
-        min-width: 100%;
+        width: 100%;
     }
-
+    #footer-mobile {
+        position: unset;
+        width: 100%;
+        bottom: 0;
+        background-color: #D0D0D0;
+    }
 }
 
 /* On screens that are 992px wide or less */
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 992px) {
 
     .navbar a {
         text-align: center;
@@ -29,84 +37,91 @@
     .dropdown-menu {
         background-color: whitesmoke;
     }
+    #login {
+        max-width: 70%;
+    }
+
+}
+
+
+
+@media screen and (min-width: 1024px) {
+    main {
+        background-color: whitesmoke;
+        padding: 14px 20px;
+    }
+
+    .navbar {
+        display: flex;
+        background-color: black;
+    }
+
+    .navbar a {
+        color: whitesmoke;
+        padding: 14px 20px;
+        text-decoration: none;
+
+    }
+
+    .navbar a:hover {
+        background-color: #d0d0d0;
+        color: black;
+    }
+
+    a.dropdown-item {
+        color:  black;
+    }
+
+    img {
+        width: 100%;
+
+    }
+
+    footer {
+        padding: 20px;
+    }
+
+    footer > ul {
+        font-size: 2.5rem;
+    }
+
+    .datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+        background-color: lightcoral !important;
+
+    }
+
+    div.container {
+        margin-top: 20px;
+    }
+
+    div.room-title {
+        padding: 2em;
+        background-size: cover;
+        background-position: center center;
+
+    }
+
+    div.room-title h1, div.room-title p {
+        color: white;
+        text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+    }
+
+    div.carousel-caption {
+        text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+    }
+    div.card.room-title > div > h2 {
+        color: white;
+        text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+    }
+
     #footer-mobile {
-        position: inherit;
+        position: absolute;
         width: 100%;
         bottom: 0;
         background-color: #D0D0D0;
     }
+
+    #login {
+        max-width: 50%;
+    }
 }
-
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-main {
-    background-color: whitesmoke;
-    padding: 14px 20px;
-}
-
-.navbar {
-    display: flex;
-    background-color: black;
-}
-
-.navbar a {
-    color: whitesmoke;
-    padding: 14px 20px;
-    text-decoration: none;
-
-}
-
-.navbar a:hover {
-    background-color: #d0d0d0;
-    color: black;
-}
-
-a.dropdown-item {
-    color:  black;
-}
-
-img {
-    width: 100%;
-
-}
-
-footer {
-    padding: 20px;
-}
-
-footer > ul {
-    font-size: 2.5rem;
-}
-
-.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
-    background-color: lightcoral !important;
-
-}
-
-div.container {
-    margin-top: 20px;
-}
-
-div.room-title {
-    padding: 2em;
-    background-size: cover;
-    background-position: center center;
-
-}
-
-div.room-title h1, div.room-title p {
-    color: white;
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
-}
-
-div.carousel-caption {
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
-}
-div.card.room-title > div > h2 {
-    color: white;
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
-}
-
