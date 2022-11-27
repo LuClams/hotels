@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BookingController extends AbstractController
 {
-  //  #[Route('/booking', name: 'app_booking')]
     #[Route('/rooms/{title}/book', name: 'app_booking_create')]
     public function index(Room $room, Request $request, EntityManagerInterface $entityManager)
     {

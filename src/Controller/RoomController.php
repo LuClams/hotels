@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Booking;
 use App\Entity\Room;
-use App\Form\BookingFormType;
 use App\Form\RoomFormType;
 use App\Repository\RoomRepository;
 use App\Repository\SlideimageRepository;

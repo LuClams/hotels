@@ -10,26 +10,32 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
         {% block stylesheets %}
-      {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
-         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
         {% block javascripts %}
-      {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
 
     </head>
 
     {% block body %}
-    <body>
+    <body style="background-color: whitesmoke;">
         {% block header %}{% endblock header %}
 
-        {% block main %}{% endblock main %}
+        {% block main %}
+            <main style="position: relative; margin: 0; min-height: 100vh;"></main>
+        {% endblock main %}
 
         {% block footer %}
 
             <div class="container-fluid"  style="background-color: #D0D0D0;">
-                <footer class="row row-cols-5 py-5 border-top">
+                <footer class="row row-cols-5 py-5 border-top"
+                        style="position: absolute;
+                        width: 100%; bottom: 0;
+                        background-color: #D0D0D0;"
+                >
                     <div class="col">
                         <p><h1><b>Hypnos</b></h1></p>
                         <p class="footerp">Lorem ipsum dolor sit amet.</p>
@@ -78,6 +84,6 @@
             </div>
         {% endblock footer %}
 
-    </body>
+        </body>
     {% endblock body %}
 </html>
