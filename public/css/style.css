@@ -21,6 +21,7 @@ html, body {
         width: 100%;
     }
     #footer-mobile {
+        position: absolute;
         width: 100%;
         bottom: 0;
         background-color: #D0D0D0;
