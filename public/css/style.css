@@ -17,6 +17,7 @@
     #login {
         min-width: 100%;
     }
+
 }
 
 /* On screens that are 992px wide or less */
@@ -27,6 +28,12 @@
     }
     .dropdown-menu {
         background-color: whitesmoke;
+    }
+    #footer-mobile {
+        position: inherit;
+        width: 100%;
+        bottom: 0;
+        background-color: #D0D0D0;
     }
 }
 
