@@ -8,9 +8,16 @@ main {
 }
 footer {
     background-color: #D0D0D0;
+    position: unset;
 }
 #content {
     min-height: 100%;
+    min-width: 100%;
+    position:relative;
+}
+#contenu {
+    min-height: 100%;
+    min-width: 100%;
     position:relative;
 }
 /* Responsive layout - when the screen is less than 700px*/
@@ -152,4 +159,18 @@ footer {
     #login {
         max-width: 50%;
     }
+}
+
+@media screen and (min-width: 1400px) {
+    #content {
+        min-height: 100%;
+        position: unset;
+    }
+    #footer-mobile {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+    }
+
 }
