@@ -21,7 +21,7 @@ html, body {
         width: 100%;
     }
     #footer-mobile {
-        position: unset;
+
         width: 100%;
         bottom: 0;
         background-color: #D0D0D0;
@@ -43,9 +43,17 @@ html, body {
 
 }
 
-
-
 @media screen and (min-width: 900px) {
+    #footer-mobile {
+        position: unset;
+        width: 100%;
+        bottom: 0;
+        background-color: #D0D0D0;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
     main {
         background-color: whitesmoke;
         padding: 14px 20px;
