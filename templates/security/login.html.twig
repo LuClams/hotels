@@ -1,4 +1,4 @@
-{% extends 'headers/header2.html.twig' %}
+{% extends 'base2.html.twig' %}
 {% block tag_title %} Connexion {% endblock %}
 {% block title %}Log in! {% endblock %}
 
@@ -31,7 +31,7 @@
             </button>
             <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié</a>
         </form>
-            <button class="btn btn-lg btn-primary m-2" type="submit">
+            <button class="btn btn-lg btn-primary m-2" type="submit" id="register">
                 <a href="{{ path('app_register') }}"
                    style="color: inherit; text-decoration: none;">
                 S'inscrire
