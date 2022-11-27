@@ -3,7 +3,7 @@ html, body {
     margin: 0;
 }
 /* Responsive layout - when the screen is less than 700px*/
-@media screen and (min-width: 425px) {
+@media screen and (min-width: 300px) {
     .navbar {
         flex-direction: column;
     }
@@ -29,7 +29,7 @@ html, body {
 }
 
 /* On screens that are 992px wide or less */
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 600px) {
 
     .navbar a {
         text-align: center;
@@ -45,7 +45,7 @@ html, body {
 
 
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 900px) {
     main {
         background-color: whitesmoke;
         padding: 14px 20px;
