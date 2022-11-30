@@ -102,52 +102,6 @@ class HotelController extends AbstractController
     }
 
 
-    #[Route('/hotel-hyatt/{title}', name: 'app_hotel_hyatttt')]
-    public function room(RoomRepository $roomRepository,Room $room, $title, Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $roomDetails = $roomRepository->findOneBy(['title' => $title]);
-        if(!$roomDetails){
-            // Si aucun article n'est trouvé, nous créons une exception
-            throw $this->createNotFoundException('L\'article n\'existe pas');
-        }
-
-        $bookings = new Booking();
-
-        $form = $this->createForm(BookingFormType::class, $bookings);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            //$booking->setSentAt(new \DateTime());
-            $user = $this->getUser();
-            //$notAvailableDays = $this ->$room->getNotAvailableDays();
-
-            $bookings->setBooker($user)
-                     ->setRoom($room);
-            // Si les dates ne sont pas disponibles , message d'erreur
-            if(!$bookings->isBookableDates()) {
-                $this->addFlash(
-                    'warning',
-                    "Les dates que vous avez choisi sont indisponibles"
-                );
-            } else {
-                $entityManager->persist($bookings);
-                $entityManager->flush();
-
-                $this->addFlash('success', 'Réservation effectuée');
-
-            }
-        }
-
-        return $this->render('hotel/roomhyatt.html.twig', [
-            'controller_name' => 'HotelController',
-            'roomDetails' => $roomDetails,
-            'room' => $room,
-            'form' => $form->createView()
-        ]);
-    }
-
-
    // #[Route('/hotel-westeen', name: 'app_hotel_westeen', requirements: ['id' => '/d+'])]
     #[Route('/hotel-westeen', name: 'app_hotel_westeen')]
     public function findRoomWesteen(RoomRepository $roomRepository): Response

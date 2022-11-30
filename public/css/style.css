@@ -1,6 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
+    background-color: whitesmoke;
 }
 main {
     background-color: whitesmoke;
@@ -10,6 +11,7 @@ footer {
     background-color: #D0D0D0;
     position: unset;
 }
+
 #content {
     min-height: 100%;
     min-width: 100%;
@@ -20,6 +22,12 @@ footer {
     min-width: 100%;
     position:relative;
 }
+.card-img-overlay {
+    color: white;
+    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+}
+
+
 /* Responsive layout - when the screen is less than 700px*/
 @media screen and (min-width: 320px) and (orientation: portrait) {
     .navbar {
@@ -29,12 +37,8 @@ footer {
         width:80px;
         height:106px;
     }
-    .footerp {
-        display: none;
-    }
-    #myInput {
-        min-width: 60%;
-    }
+
+
     #login {
         width: 100%;
     }
@@ -55,12 +59,20 @@ footer {
         bottom: 0;
         background-color: #D0D0D0;
     }
+
+}
+
+@media screen and (max-width: 767px) and (min-width: 320px)  {
     .footerp {
         display: none;
     }
+    .card-img-overlay > #description {
+        display: none;
+    }
+    #myInput {
+        min-width: 60%;
+    }
 }
-
-
 
 /* On screens that are 992px wide or less */
 @media screen and (min-width: 768px) {
@@ -80,30 +92,13 @@ footer {
 
 
 @media screen and (min-width: 900px) {
-    main {
-        background-color: whitesmoke;
-        padding: 14px 20px;
-    }
-
-    .navbar {
-        display: flex;
-        background-color: black;
-    }
 
     .navbar a {
-        color: whitesmoke;
         padding: 14px 20px;
-        text-decoration: none;
-
     }
 
     .navbar a:hover {
         background-color: #d0d0d0;
-        color: black;
-    }
-
-    a.dropdown-item {
-        color:  black;
     }
 
     img {
@@ -113,7 +108,6 @@ footer {
 
     footer {
         padding: 20px;
-
     }
 
     footer > ul {
@@ -133,7 +127,7 @@ footer {
         padding: 2em;
         background-size: cover;
         background-position: center center;
-
+        background-color: whitesmoke;
     }
 
     div.room-title h1, div.room-title p {

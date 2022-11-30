@@ -1,80 +1,10 @@
-{% extends 'headers/header.html.twig' %}
+{% extends 'base1.html.twig' %}
 
 {% block tag_title %} Nos hotels - Yadel {% endblock %}
 {% block title %} Yadel {% endblock %}
 
 {% block main %}
-    <div class="card text-white border-0">
-        <img src="{{ img }}" class="card-img" alt="...">
-        <div class="card-img-overlay ">
-            <div class="position-absolute top-50 start-50 translate-middle bg-dark opacity-75">
-                <h1 class="card-title text-center">Yadel</h1>
-                <p class="card-text justify-content-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-            </div>
 
-        </div>
-    </div>
+    {% include('hotel/index.html.twig') %}
 
-    <main>
-        <input type="text"
-               id="myInput"
-               onkeyup="myFunction()"
-               placeholder="Chercher une suite.."
-               title="Type in a name"
-               style="  background-position: 10px 12px;
-                        background-repeat: no-repeat;
-                        width: 40%;
-                        font-size: 16px;
-                        padding: 12px 20px 12px 40px;
-                        border: 1px solid #ddd;
-                        margin-top: 5px;
-                        margin-bottom: 12px;"
-        >
-
-        <div class=" m-3 justify-content-center justify-content-around " id="myList">
-            {% for room in rooms %}
-                <div class="card mb-3">
-                    <div class="row align-items-center g-0">
-                        <div class="col-md-4">
-                            <img src="{{ vich_uploader_asset(room, 'imageFile') }}" class="img-fluid rounded-start" alt="{{ room.title }}">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ room.title }}</h5>
-                                <p class="card-text">{{ room.description }}</p>
-                                <a href="{{ path('app_hotel_yadel') }}">Voir plus</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <p class="text-center"><b>{{ room.price }} €</b></p>
-                            <a href="{{ path('app_booking_create',{ title: room.title } ) }}" class="btn btn-primary">Réserver cette suite</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-
-            {% block javascripts %}
-                <script>
-                    function myFunction() {
-                        var input, filter, ul, li, h, i, txtValue;
-                        input = document.getElementById("myInput");
-                        filter = input.value.toUpperCase();
-                        ul = document.getElementById("myList");
-                        li = ul.getElementsByClassName("card mb-3");
-                        for (i = 0; i < li.length; i++) {
-                            h = li[i].getElementsByTagName("h5")[0];
-                            txtValue = h.textContent || h.innerText;
-                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                li[i].style.display = "";
-                            } else {
-                                li[i].style.display = "none";
-                            }
-                        }
-                    }
-                </script>
-
-            {% endblock %}
-        </div>
-
-    </main>
 {% endblock %}
