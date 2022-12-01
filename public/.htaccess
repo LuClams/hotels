@@ -55,7 +55,7 @@ DirectoryIndex index.php
     RewriteRule ^ %{ENV:BASE}/index.php [L]
     
     RewriteCond %{HTTPS} off 
-    RewriteRule ^(.*)$ https://groupe-hotels.herokuapp.com /$1[L,R=301]
+    RewriteRule ^(.*)$ https://groupe-hotels.herokuapp.com/$1[L,R=301]
 </IfModule>
 
 <IfModule !mod_rewrite.c>
