@@ -20,15 +20,8 @@ DirectoryIndex index.php
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-
-    RewriteCond %{HTTPS} off
-    RewriteRule ^(.*)$ https://groupe-hotels.herokuapp.com/$1 [L,R=301]
-    
-    RewriteCond %{HTTP_HOST} ^www\.(([a-z0-9_]+\.)?groupe-hotels.herokuapp\.com)$ [NC]
-    RewriteRule .? http://%1%{REQUEST_URI} [R=301,L]
-    
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ web/$1 [QSA,L]
+    RewriteCond %{HTTPS} !=on
+    RewriteRule .* https://groupe-hotels.herokuapp.com [R=301,L]
 
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
