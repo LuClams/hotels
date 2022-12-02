@@ -47,7 +47,7 @@ class BookingCrudController extends AbstractCrudController
             AssociationField::new('room'),
             DateField::new('startDate'),
             DateField::new('endDate'),
-            MoneyField::new('amount')->setCurrency('EUR'),
+            MoneyField::new('amount')->setCurrency('EUR')->setCustomOption('storedAsCents', false),
             AssociationField::new('booker')
         ];
     }
