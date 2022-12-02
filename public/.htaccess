@@ -24,7 +24,7 @@ DirectoryIndex index.php
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://groupe-hotels.herokuapp.com/$1 [L,R=301]
     
-    RewriteCond %{HTTP_HOST} ^www\.(([a-z0-9_]+\.)?groupe-hotels\.com)$ [NC]
+    RewriteCond %{HTTP_HOST} ^www\.(([a-z0-9_]+\.)?groupe-hotels.herokuapp\.com)$ [NC]
     RewriteRule .? http://%1%{REQUEST_URI} [R=301,L]
     
     RewriteCond %{REQUEST_FILENAME} !-f
