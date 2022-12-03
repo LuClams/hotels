@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ room.title }}</h5>
                             <p class="card-text">{{room.description }}</p>
-                            <a href="{{ path('app_hotel_westeen') }}">Voir plus</a>
+                            <a href="{{ path('app_rooms_show',{ title: room.title }) }}">Voir plus</a>
                         </div>
                     </div>
                     <div class="col-md-2">
