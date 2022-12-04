@@ -20,8 +20,8 @@ DirectoryIndex index.php
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
- #   RewriteCond %{HTTP:X-Forwarded-Proto} !https
- #   RewriteRule (.*) https://groupe-hotels.herokuapp.com/$1 [R=301,L]
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule (.*) https://groupe-hotels.herokuapp.com/$1 [R=301,L]
 
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
@@ -34,8 +34,8 @@ DirectoryIndex index.php
     RewriteRule .* - [E=BASE:%1]
 
     # Sets the HTTP_AUTHORIZATION header removed by Apache
-    RewriteCond %{HTTPS:Authorization} .+
-    RewriteRule ^ - [E=HTTPS_AUTHORIZATION:%0]
+    RewriteCond %{HTTP:Authorization} .+
+    RewriteRule ^ - [E=HTTP_AUTHORIZATION:%0]
 
     # Redirect to URI without front controller to prevent duplicate content
     # (with and without `/index.php`). Only do this redirect on the initial
